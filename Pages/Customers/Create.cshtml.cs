@@ -2,7 +2,7 @@ using DotNetRazorPages.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace DotNetRazorPages.Pages;
+namespace DotNetRazorPages.Pages.Customers;
 
 public class CreateModel : PageModel
 {
@@ -31,6 +31,6 @@ public class CreateModel : PageModel
         if (Customer != null) _context.Customer.Add(Customer);
         await _context.SaveChangesAsync();
 
-        return RedirectToPage("/Index");
+        return RedirectToPage("./Index");
     }
 }
