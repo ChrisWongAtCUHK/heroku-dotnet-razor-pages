@@ -1,14 +1,17 @@
+using DotNetRazorPages.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace DotNetRazorPages.Data
-{
-    public class CustomerDbContext : DbContext
-    {
-        public CustomerDbContext (DbContextOptions<CustomerDbContext> options)
-            : base(options)
-        {
-        }
+namespace DotNetRazorPages.Data;
 
-        public DbSet<DotNetRazorPages.Models.Customer> Customer => Set<DotNetRazorPages.Models.Customer>();
+public class CustomerDbContext : DbContext
+{
+    public DbSet<Customer> Customers { get; set; }
+    public CustomerDbContext (DbContextOptions<CustomerDbContext> options)
+        : base(options)
+    {
     }
+
+    public DbSet<Customer> Customer => Set<Customer>();
+
+    
 }
