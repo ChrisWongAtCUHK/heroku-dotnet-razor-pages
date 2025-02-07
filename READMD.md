@@ -4,6 +4,10 @@
 - [CSS isolation](https://learn.microsoft.com/en-us/aspnet/core/razor-pages/?view=aspnetcore-9.0&tabs=visual-studio-code#css-isolation)
 - [Using Layouts, partials, templates, and Tag Helpers with Razor Pages](https://learn.microsoft.com/en-us/aspnet/core/razor-pages/?view=aspnetcore-9.0&tabs=visual-studio-code#using-layouts-partials-templates-and-tag-helpers-with-razor-pages)
 - [Pomelo.EntityFrameworkCore.MySql](https://github.com/PomeloFoundation/Pomelo.EntityFrameworkCore.MySql?tab=readme-ov-file#2-services-configuration)
+- [Creating RazorPage apps using the CLI](https://tattoocoder.com/creating-razorpage-apps-using-the-cli/)
+```
+dotnet new page -n Index -na DotNetRazorPages.Pages.Area -o Pages/Area
+```
 ```
 heroku create --buildpack http://github.com/heroku/dotnet-buildpack.git
 heroku buildpacks:set heroku/dotnet
