@@ -1,14 +1,17 @@
 @page
-@model DotNetRazorPages.Pages.Customers.CreateModel;
+@model DotNetRazorPages.Pages.Customers.CreateModel
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
-<p>Enter a customer name:</p>
+<p>Validation: customer name:</p>
 
 <form method="post">
+    <div asp-validation-summary="ModelOnly"></div>
+    <span asp-validation-for="Customer!.Name"></span>
     Name:
-    <input type="text" data-val="true"
-           data-val-length="The field Name must be a string with a maximum length of 10."
-           data-val-length-max="10" data-val-required="The Name field is required."
-           id="Customer_Name" maxlength="10" name="Customer.Name" value="" />
+    <input asp-for="Customer!.Name" />
     <input type="submit" />
 </form>
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
