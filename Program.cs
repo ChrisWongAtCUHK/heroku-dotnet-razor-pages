@@ -1,9 +1,14 @@
-using Microsoft.AspNetCore.Hosting.StaticWebAssets;
+using DotNetRazorPages.Data;
 using Microsoft.AspNetCore.HttpOverrides;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddRazorPages();
+
+builder.Services.AddDbContext<CustomerDbContext>(options =>
+    options.UseInMemoryDatabase("name"));
+    
 var isHeroku = !string.IsNullOrEmpty(Environment.GetEnvironmentVariable("DYNO"));
 builder.Services.Configure<ForwardedHeadersOptions>(options =>
 {
