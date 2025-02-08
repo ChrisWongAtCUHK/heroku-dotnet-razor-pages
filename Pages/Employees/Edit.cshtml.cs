@@ -46,27 +46,23 @@ public class EditModel(ILogger<EditModel> logger, IEmployeeRepository employeeRe
       }
       // Save the new photo in wwwroot/images folder and update
       // PhotoPath property of the employee object
-      employee.PhotoPath = ProcessUploadedFile();
+      ProcessUploadedFile();
     }
 
     Employee = _employeeRepository.Update(employee);
     return RedirectToPage("Index");
   }
 
-  private string ProcessUploadedFile()
+  private void ProcessUploadedFile()
   {
-    string? uniqueFileName = null;
-
     if (Photo != null)
     {
-      string uploadsFolder = Path.Combine(webHostEnvironment.WebRootPath, "images");
-      uniqueFileName = Guid.NewGuid().ToString() + "_" + Photo.FileName;
-      string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+      string uploadFolder = Path.Combine(_webHostEnvironment.WebRootPath, "images");
+      string filePath = Path.Combine(uploadFolder, Employee.PhotoPath ?? "noimage.jpg");
       using (var fileStream = new FileStream(filePath, FileMode.Create))
       {
         Photo.CopyTo(fileStream);
       }
     }
-    return uniqueFileName ?? "";
   }
 }
