@@ -1,4 +1,5 @@
 using DotNetRazorPages.Data;
+using DotNetRazorPages.Services;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.EntityFrameworkCore;
 
@@ -41,6 +42,7 @@ builder.Services.AddHttpsRedirection(options =>
 });
 
 builder.Services.AddHttpClient();
+builder.Services.AddScoped<IEmployeeRepository, MockEmployeeRepository>();
 
 var app = builder.Build();
 
