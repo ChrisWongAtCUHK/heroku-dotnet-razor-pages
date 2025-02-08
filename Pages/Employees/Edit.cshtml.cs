@@ -5,17 +5,22 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace DotNetRazorPages.Pages.Employees;
 
-public class EditModel(ILogger<EditModel> logger, IEmployeeRepository employeeRepository) : PageModel
+public class EditModel(ILogger<EditModel> logger, IEmployeeRepository employeeRepository, IWebHostEnvironment webHostEnvironment) : PageModel
 {
   private readonly ILogger<EditModel> _logger = logger;
 
 #pragma warning disable CS9124 // Parameter is captured into the state of the enclosing type and its value is also used to initialize a field, property, or event.
+  private readonly IWebHostEnvironment _webHostEnvironment = webHostEnvironment;
   private readonly IEmployeeRepository _employeeRepository = employeeRepository;
 #pragma warning restore CS9124 // Parameter is captured into the state of the enclosing type and its value is also used to initialize a field, property, or event.
+
 
   [BindProperty]
   public required Employee Employee { get; set; }
 
+  // We use this property to store and process
+  // the newly uploaded photo
+  public IFormFile? Photo { get; set; }
   public IActionResult OnGet(int id)
   {
     Employee = _employeeRepository.GetEmployee(id);
@@ -29,7 +34,39 @@ public class EditModel(ILogger<EditModel> logger, IEmployeeRepository employeeRe
 
   public IActionResult OnPost(Employee employee)
   {
+    if (Photo != null)
+    {
+      // If a new photo is uploaded, the existing photo must be
+      // deleted. So check if there is an existing photo and delete
+      if (employee.PhotoPath != null)
+      {
+        string filePath = Path.Combine(_webHostEnvironment.WebRootPath,
+            "images", employee.PhotoPath);
+        System.IO.File.Delete(filePath);
+      }
+      // Save the new photo in wwwroot/images folder and update
+      // PhotoPath property of the employee object
+      employee.PhotoPath = ProcessUploadedFile();
+    }
+
     Employee = _employeeRepository.Update(employee);
     return RedirectToPage("Index");
+  }
+
+  private string ProcessUploadedFile()
+  {
+    string? uniqueFileName = null;
+
+    if (Photo != null)
+    {
+      string uploadsFolder = Path.Combine(webHostEnvironment.WebRootPath, "images");
+      uniqueFileName = Guid.NewGuid().ToString() + "_" + Photo.FileName;
+      string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+      using (var fileStream = new FileStream(filePath, FileMode.Create))
+      {
+        Photo.CopyTo(fileStream);
+      }
+    }
+    return uniqueFileName ?? "";
   }
 }

@@ -37,14 +37,22 @@ public class MockEmployeeRepository : IEmployeeRepository
   public Employee Update(Employee updatedEmployee)
   {
 #pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
-        Employee employee = _employeeList
-        .FirstOrDefault(e => e.Id == updatedEmployee.Id);
+    Employee employee = _employeeList
+    .FirstOrDefault(e => e.Id == updatedEmployee.Id);
 #pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
-        if (employee != null)
+    if (employee != null)
     {
       employee.Name = updatedEmployee.Name;
       employee.Email = updatedEmployee.Email;
       employee.Department = updatedEmployee.Department;
+    }
+    else
+    {
+      employee = new()
+      {
+        Name = "",
+        Email = ""
+      };
     }
     return employee;
   }

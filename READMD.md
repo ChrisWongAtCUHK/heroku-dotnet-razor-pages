@@ -15,6 +15,7 @@
 - [Handling 404 error in razor pages project](https://csharp-video-tutorials.blogspot.com/2019/12/handling-404-error-in-razor-pages.html)
 - [Editing data in asp.net core razor pages](https://csharp-video-tutorials.blogspot.com/2019/12/editing-data-in-aspnet-core-razor-pages.html)
 - [Updating data in asp.net core razor pages](https://csharp-video-tutorials.blogspot.com/2020/01/updating-data-in-aspnet-core-razor-pages.html)
+- [File upload in asp.net core razor pages](https://csharp-video-tutorials.blogspot.com/2020/01/file-upload-in-aspnet-core-razor-pages.html)
 ```
 dotnet new page -n Index -na DotNetRazorPages.Pages.Area -o Pages/Area
 ```
