@@ -69,12 +69,14 @@ public class EditModel(ILogger<EditModel> logger, IEmployeeRepository employeeRe
       Message = "You have turned off email notifications";
     }
 
+    // Store the confirmation message in TempData
+    TempData["message"] = Message;
+
     // Redirect the request to Details razor page and pass along 
-    // EmployeeID and the message. EmployeeID is passed as route
-    // parameter and the message is passed as a query string
-    return RedirectToPage("Details", new { id = id, message = Message });
+    // EmployeeID in URL as a route parameter
+    return RedirectToPage("Details", new { id = id });
   }
-  
+
 
   private void ProcessUploadedFile()
   {

@@ -11,11 +11,11 @@
             <div class="card-header">
                 <h1>@Model.Employee.Name</h1>
                 <h4>
-                    @if (!string.IsNullOrEmpty(Model.Message))
+                    @if (TempData["message"] != null)
                     {
                         <div class="col-sm-8">
                             <div class="alert alert-primary">
-                                @Model.Message
+                                @TempData["message"]
                             </div>
                         </div>
                     }
