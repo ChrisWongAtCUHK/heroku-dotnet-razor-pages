@@ -11,17 +11,21 @@ public class DetailsModel(ILogger<DetailsModel> logger, IConfiguration configura
   public IConfiguration _configuration { get; set; } = configuration;
 
 #pragma warning disable CS9124 // Parameter is captured into the state of the enclosing type and its value is also used to initialize a field, property, or event.
-    private readonly IEmployeeRepository _employeeRepository = employeeRepository;
+  private readonly IEmployeeRepository _employeeRepository = employeeRepository;
 #pragma warning restore CS9124 // Parameter is captured into the state of the enclosing type and its value is also used to initialize a field, property, or event.
-    public required Employee Employee { get; set; }
+  public required Employee Employee { get; set; }
 
-  public IActionResult OnGet(int id)
+  [BindProperty(SupportsGet = true)]
+  public string? Message { get; set; }
+
+  public IActionResult OnGet(int id, string? message)
   {
     Employee = employeeRepository.GetEmployee(id);
-    if(Employee == null)
+    if (Employee == null)
     {
-       return RedirectToPage("/NotFound");
+      return RedirectToPage("/NotFound");
     }
+    Message = message;
 
     return Page();
   }

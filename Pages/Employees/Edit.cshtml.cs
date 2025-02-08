@@ -58,7 +58,7 @@ public class EditModel(ILogger<EditModel> logger, IEmployeeRepository employeeRe
     return RedirectToPage("Index");
   }
 
-  public void OnPostUpdateNotificationPreferences(int id)
+  public IActionResult OnPostUpdateNotificationPreferences(int id)
   {
     if (Notify)
     {
@@ -69,8 +69,12 @@ public class EditModel(ILogger<EditModel> logger, IEmployeeRepository employeeRe
       Message = "You have turned off email notifications";
     }
 
-    Employee = employeeRepository.GetEmployee(id);
+    // Redirect the request to Details razor page and pass along 
+    // EmployeeID and the message. EmployeeID is passed as route
+    // parameter and the message is passed as a query string
+    return RedirectToPage("Details", new { id = id, message = Message });
   }
+  
 
   private void ProcessUploadedFile()
   {

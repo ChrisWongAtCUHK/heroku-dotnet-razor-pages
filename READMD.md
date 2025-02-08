@@ -17,6 +17,7 @@
 - [Updating data in asp.net core razor pages](https://csharp-video-tutorials.blogspot.com/2020/01/updating-data-in-aspnet-core-razor-pages.html)
 - [File upload in asp.net core razor pages](https://csharp-video-tutorials.blogspot.com/2020/01/file-upload-in-aspnet-core-razor-pages.html)
 - [Handle multiple forms in asp.net core razor pages](https://csharp-video-tutorials.blogspot.com/2020/01/handle-multiple-forms-in-aspnet-core.html)
+- [TempData in asp.net core](https://csharp-video-tutorials.blogspot.com/2020/01/tempdata-in-aspnet-core.html)
 ```
 dotnet new page -n Index -na DotNetRazorPages.Pages.Area -o Pages/Area
 ```
