@@ -5,6 +5,7 @@
 - [Using Layouts, partials, templates, and Tag Helpers with Razor Pages](https://learn.microsoft.com/en-us/aspnet/core/razor-pages/?view=aspnetcore-9.0&tabs=visual-studio-code#using-layouts-partials-templates-and-tag-helpers-with-razor-pages)
 - [Pomelo.EntityFrameworkCore.MySql](https://github.com/PomeloFoundation/Pomelo.EntityFrameworkCore.MySql?tab=readme-ov-file#2-services-configuration)
 - [Creating RazorPage apps using the CLI](https://tattoocoder.com/creating-razorpage-apps-using-the-cli/)
+- [.NET Core 中正确使用 HttpClient 的姿势](https://www.cnblogs.com/willick/p/net-core-httpclient.html)
 ```
 dotnet new page -n Index -na DotNetRazorPages.Pages.Area -o Pages/Area
 ```

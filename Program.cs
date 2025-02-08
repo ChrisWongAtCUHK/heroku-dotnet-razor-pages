@@ -40,6 +40,8 @@ builder.Services.AddHttpsRedirection(options =>
     };
 });
 
+builder.Services.AddHttpClient();
+
 var app = builder.Build();
 
 app.UseForwardedHeaders();
