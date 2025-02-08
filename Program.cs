@@ -1,3 +1,4 @@
+using DotNetRazorPages.Constrains;
 using DotNetRazorPages.Data;
 using DotNetRazorPages.Services;
 using Microsoft.AspNetCore.HttpOverrides;
@@ -43,6 +44,9 @@ builder.Services.AddHttpsRedirection(options =>
 
 builder.Services.AddHttpClient();
 builder.Services.AddScoped<IEmployeeRepository, MockEmployeeRepository>();
+
+builder.Services.AddRouting(options =>
+    options.ConstraintMap.Add("even", typeof(EvenConstraint)));
 
 var app = builder.Build();
 
