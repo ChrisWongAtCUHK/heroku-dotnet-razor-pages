@@ -21,6 +21,11 @@ public class EditModel(ILogger<EditModel> logger, IEmployeeRepository employeeRe
   // We use this property to store and process
   // the newly uploaded photo
   public IFormFile? Photo { get; set; }
+
+  [BindProperty]
+  public bool Notify { get; set; }
+
+  public string? Message { get; set; }
   public IActionResult OnGet(int id)
   {
     Employee = _employeeRepository.GetEmployee(id);
@@ -51,6 +56,20 @@ public class EditModel(ILogger<EditModel> logger, IEmployeeRepository employeeRe
 
     Employee = _employeeRepository.Update(employee);
     return RedirectToPage("Index");
+  }
+
+  public void OnPostUpdateNotificationPreferences(int id)
+  {
+    if (Notify)
+    {
+      Message = "Thank you for turning on notifications";
+    }
+    else
+    {
+      Message = "You have turned off email notifications";
+    }
+
+    Employee = employeeRepository.GetEmployee(id);
   }
 
   private void ProcessUploadedFile()
