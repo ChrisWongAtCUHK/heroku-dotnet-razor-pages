@@ -12,6 +12,7 @@
 - [Query string parameters in asp.net core razor pages](https://csharp-video-tutorials.blogspot.com/2019/12/query-string-parameters-in-aspnet-core.html)
 - [Route parameters in asp.net core razor pages](https://csharp-video-tutorials.blogspot.com/2019/12/route-parameters-in-aspnet-core-razor.html)
 - [Creating custom route constraint in asp.net core](https://csharp-video-tutorials.blogspot.com/2019/12/aspnet-core-custom-route-constraint.html)
+- [Handling 404 error in razor pages project](https://csharp-video-tutorials.blogspot.com/2019/12/handling-404-error-in-razor-pages.html)
 ```
 dotnet new page -n Index -na DotNetRazorPages.Pages.Area -o Pages/Area
 ```
