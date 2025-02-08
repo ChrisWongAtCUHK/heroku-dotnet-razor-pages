@@ -30,7 +30,22 @@ public class MockEmployeeRepository : IEmployeeRepository
   {
 
 #pragma warning disable CS8603 // Possible null reference return.
-        return _employeeList!.FirstOrDefault(e => e!.Id == id);
+    return _employeeList!.FirstOrDefault(e => e!.Id == id);
 #pragma warning restore CS8603 // Possible null reference return.
+  }
+
+  public Employee Update(Employee updatedEmployee)
+  {
+#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
+        Employee employee = _employeeList
+        .FirstOrDefault(e => e.Id == updatedEmployee.Id);
+#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
+        if (employee != null)
+    {
+      employee.Name = updatedEmployee.Name;
+      employee.Email = updatedEmployee.Email;
+      employee.Department = updatedEmployee.Department;
     }
+    return employee;
+  }
 }

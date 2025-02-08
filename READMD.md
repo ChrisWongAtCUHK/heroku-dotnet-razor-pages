@@ -14,6 +14,7 @@
 - [Creating custom route constraint in asp.net core](https://csharp-video-tutorials.blogspot.com/2019/12/aspnet-core-custom-route-constraint.html)
 - [Handling 404 error in razor pages project](https://csharp-video-tutorials.blogspot.com/2019/12/handling-404-error-in-razor-pages.html)
 - [Editing data in asp.net core razor pages](https://csharp-video-tutorials.blogspot.com/2019/12/editing-data-in-aspnet-core-razor-pages.html)
+- [Updating data in asp.net core razor pages](https://csharp-video-tutorials.blogspot.com/2020/01/updating-data-in-aspnet-core-razor-pages.html)
 ```
 dotnet new page -n Index -na DotNetRazorPages.Pages.Area -o Pages/Area
 ```
