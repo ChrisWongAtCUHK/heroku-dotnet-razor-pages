@@ -1,4 +1,4 @@
-@page
+@page "/employees/view/{id:even}"
 @model DotNetRazorPages.Pages.Employees.DetailsModel
 @{
     ViewData["Title"] = "Details";
@@ -10,14 +10,6 @@
         <div class="card">
             <div class="card-header">
                 <h1>@Model.Employee.Name</h1>
-            </div>
-
-            <div class="card-body text-center">
-                <img class="card-img-top" src="@photoPath" asp-append-version="true" />
-
-                <h4>Employee ID : @Model.Employee.Id</h4>
-                <h4>Email : @Model.Employee.Email</h4>
-                <h4>Department : @Model.Employee.Department</h4>
                 <h4>
                     @if (!string.IsNullOrEmpty(Model.Message))
                     {
@@ -28,7 +20,14 @@
                         </div>
                     }
                 </h4>
+            </div>
 
+            <div class="card-body text-center">
+                <img class="card-img-top" src="@photoPath" asp-append-version="true" />
+
+                <h4>Employee ID : @Model.Employee.Id</h4>
+                <h4>Email : @Model.Employee.Email</h4>
+                <h4>Department : @Model.Employee.Department</h4>
             </div>
             <div class="card-footer text-center">
                 <a asp-page="index" class="btn btn-primary">Back</a>
