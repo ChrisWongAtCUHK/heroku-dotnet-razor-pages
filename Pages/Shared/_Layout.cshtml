@@ -1,21 +1,39 @@
 ﻿<!DOCTYPE html>
 <html>
+
 <head>
     <title>RP Sample</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
 </head>
-<body>
-    <a asp-page="/Index">Home</a>
-    <a asp-page="/Customers/Create">Create</a>
-    <a asp-page="/Customers/Index">Customers</a>
-    <a asp-page="/Area/Index">Area</a>
-    <a asp-page="/Download/Index">Download</a>
-    <a asp-page="/Email/Index">Email</a> <br />
 
+<body>
+    <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+        <ul class="navbar-nav flex-grow-1">
+            <li class="nav-item">
+                <a asp-page="/Index">Home</a>
+            </li>
+            <li class="nav-item">
+                <a asp-page="/Customers/Create">Create</a>
+            </li>
+            <li class="nav-item">
+                <a asp-page="/Customers/Index">Customers</a>
+            </li>
+            <li class="nav-item">
+                <a asp-page="/Area/Index">Area</a>
+            </li>
+            <li class="nav-item">
+                <a asp-page="/Download/Index">Download</a>
+            </li>
+            <li class="nav-item">
+                <a asp-page="/Email/Index">Email</a>
+            </li>
+        </ul>
+    </div>
     @RenderBody()
     <script src="~/lib/jquery/dist/jquery.js"></script>
     <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
     @RenderSection("JavaScript", required: false)
 </body>
+
 </html>
