@@ -19,7 +19,7 @@
 - [Handle multiple forms in asp.net core razor pages](https://csharp-video-tutorials.blogspot.com/2020/01/handle-multiple-forms-in-aspnet-core.html)
 - [TempData in asp.net core](https://csharp-video-tutorials.blogspot.com/2020/01/tempdata-in-aspnet-core.html)
 - [ASP.NET Core razor pages validation](https://csharp-video-tutorials.blogspot.com/2020/01/aspnet-core-razor-pages-validation.html)
-- [](https://www.hosting.work/aspnet-core-razor-pages-repository-pattern-ef-core/)
+- [ASP.NET Core Razor Pages : CRUD Operations with Repository Pattern and Entity Framework Core](https://www.hosting.work/aspnet-core-razor-pages-repository-pattern-ef-core/)
 ```
 dotnet new page -n Index -na DotNetRazorPages.Pages.Area -o Pages/Area
 ```

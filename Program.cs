@@ -1,5 +1,6 @@
 using DotNetRazorPages.Constrains;
 using DotNetRazorPages.Data;
+using DotNetRazorPages.Entity;
 using DotNetRazorPages.Services;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.EntityFrameworkCore;
@@ -11,9 +12,20 @@ var mysqlPassword = Environment.GetEnvironmentVariable("MYSQL_PASSWORD");
 var connectionString = $"server=sql12.freesqldatabase.com;uid={mysqlUsername};pwd={mysqlPassword};database=sql12761413";
 var serverVersion = new MySqlServerVersion(new Version(5, 5, 62));
 
+builder.Services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddRazorPages();
 
 builder.Services.AddDbContext<CustomerDbContext>(
+    dbContextOptions => dbContextOptions
+        .UseMySql(connectionString, serverVersion)
+        // The following three options help with debugging, but should
+        // be changed or removed for production.
+        .LogTo(Console.WriteLine, LogLevel.Information)
+        .EnableSensitiveDataLogging()
+        .EnableDetailedErrors()
+);
+
+builder.Services.AddDbContext<MovieDbContext>(
     dbContextOptions => dbContextOptions
         .UseMySql(connectionString, serverVersion)
         // The following three options help with debugging, but should
