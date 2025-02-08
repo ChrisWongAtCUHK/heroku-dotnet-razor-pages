@@ -39,23 +39,27 @@ public class EditModel(ILogger<EditModel> logger, IEmployeeRepository employeeRe
 
   public IActionResult OnPost(Employee employee)
   {
-    if (Photo != null)
+    if (ModelState.IsValid)
     {
-      // If a new photo is uploaded, the existing photo must be
-      // deleted. So check if there is an existing photo and delete
-      if (employee.PhotoPath != null)
+      if (Photo != null)
       {
-        string filePath = Path.Combine(_webHostEnvironment.WebRootPath,
-            "images", employee.PhotoPath);
-        System.IO.File.Delete(filePath);
+        // If a new photo is uploaded, the existing photo must be
+        // deleted. So check if there is an existing photo and delete
+        if (employee.PhotoPath != null)
+        {
+          string filePath = Path.Combine(_webHostEnvironment.WebRootPath,
+              "images", employee.PhotoPath);
+          System.IO.File.Delete(filePath);
+        }
+        // Save the new photo in wwwroot/images folder and update
+        // PhotoPath property of the employee object
+        ProcessUploadedFile();
       }
-      // Save the new photo in wwwroot/images folder and update
-      // PhotoPath property of the employee object
-      ProcessUploadedFile();
-    }
 
-    Employee = _employeeRepository.Update(employee);
-    return RedirectToPage("Index");
+      Employee = _employeeRepository.Update(employee);
+      return RedirectToPage("Index");
+    }
+    return Page();
   }
 
   public IActionResult OnPostUpdateNotificationPreferences(int id)
