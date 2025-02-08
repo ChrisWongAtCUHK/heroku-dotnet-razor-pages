@@ -7,6 +7,7 @@
 - [Creating RazorPage apps using the CLI](https://tattoocoder.com/creating-razorpage-apps-using-the-cli/)
 - [.NET Core 中正确使用 HttpClient 的姿势](https://www.cnblogs.com/willick/p/net-core-httpclient.html)
 - [ASP.Net Core Razor Pages: Convert (Export) HTML Table to Image using HTML5 Canvas](https://www.aspsnippets.com/Articles/5153/ASPNet-Core-Razor-Pages-Convert-Export-HTML-Table-to-Image-using-HTML5-Canvas/)
+- [ASP.Net Core Razor Pages: Send email with attachment from a specific URL](https://www.aspsnippets.com/Articles/5045/ASPNet-Core-Razor-Pages-Send-email-with-attachment-from-a-specific-URL/)
 ```
 dotnet new page -n Index -na DotNetRazorPages.Pages.Area -o Pages/Area
 ```
