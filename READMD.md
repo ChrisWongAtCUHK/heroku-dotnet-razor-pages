@@ -10,6 +10,7 @@
 - [ASP.Net Core Razor Pages: Send email with attachment from a specific URL](https://www.aspsnippets.com/Articles/5045/ASPNet-Core-Razor-Pages-Send-email-with-attachment-from-a-specific-URL/)
 - [Navigation menu in asp.net core razor pages project](https://csharp-video-tutorials.blogspot.com/2019/11/layout-view-in-razor-pages-project.html)
 - [Query string parameters in asp.net core razor pages](https://csharp-video-tutorials.blogspot.com/2019/12/query-string-parameters-in-aspnet-core.html)
+- [Route parameters in asp.net core razor pages](https://csharp-video-tutorials.blogspot.com/2019/12/route-parameters-in-aspnet-core-razor.html)
 ```
 dotnet new page -n Index -na DotNetRazorPages.Pages.Area -o Pages/Area
 ```
