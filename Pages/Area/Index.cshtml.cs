@@ -3,12 +3,12 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace DotNetRazorPages.Pages.Area;
 
-public class AreaModel : PageModel
+public class IndexModel : PageModel
 {
     private readonly ILogger<IndexModel> _logger;
 
     public string Message { get; private set; } = "Creating RazorPage apps using the CLI";
-    public AreaModel(ILogger<IndexModel> logger)
+    public IndexModel(ILogger<IndexModel> logger)
     {
         _logger = logger;
     }
