@@ -1,61 +1,41 @@
 @page
 @model DotNetRazorPages.Pages.Customers.IndexModel
 @addTagHelper*, Microsoft.AspNetCore.Mvc.TagHelpers
-@{
-    Layout = null;
-}
-
-<!DOCTYPE html>
-
-<html>
-
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-</head>
-
-<body>
-    <a asp-page="/Index">Home</a>
-    <a asp-page="/Customers/Create">Create</a>
-    <a asp-page="/Customers/Index">Customers</a>
-    <a asp-page="/Area/Index">Area</a>
-    <a asp-page="/Download/Index">Download</a> <br />
-    <h1>Contacts home page</h1>
-    <form method="post">
-        <table id="Grid" class="table">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                @if (Model.Customers != null)
+<h1>Contacts home page</h1>
+<form method="post">
+    <table id="Grid" class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Customers != null)
+            {
+                foreach (var contact in Model.Customers)
                 {
-                    foreach (var contact in Model.Customers)
-                    {
-                        <tr>
-                            <td> @contact.Id </td>
-                            <td>@contact.Name</td>
-                            <td>
-                                <!-- <snippet_Edit> -->
-                                <a asp-page="./Edit" asp-route-id="@contact.Id">Edit</a> |
-                                <!-- </snippet_Edit> -->
-                                <!-- <snippet_Delete> -->
-                                <button type="submit" asp-page-handler="delete" asp-route-id="@contact.Id">delete</button>
-                                <!-- </snippet_Delete> -->
-                            </td>
-                        </tr>
-                    }
+                    <tr>
+                        <td> @contact.Id </td>
+                        <td>@contact.Name</td>
+                        <td>
+                            <!-- <snippet_Edit> -->
+                            <a asp-page="./Edit" asp-route-id="@contact.Id">Edit</a> |
+                            <!-- </snippet_Edit> -->
+                            <!-- <snippet_Delete> -->
+                            <button type="submit" asp-page-handler="delete" asp-route-id="@contact.Id">delete</button>
+                            <!-- </snippet_Delete> -->
+                        </td>
+                    </tr>
                 }
-            </tbody>
-        </table>
-        <a asp-page="Create">Create New</a>
-    </form>
-    <input type="button" id="btnExport" value="Export to Image" />
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+            }
+        </tbody>
+    </table>
+    <a asp-page="Create">Create New</a>
+</form>
+<input type="button" id="btnExport" value="Export to Image" />
+@section JavaScript {
     <script type="text/javascript"
         src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script type="text/javascript">
@@ -74,6 +54,4 @@
             });
         });
     </script>
-</body>
-
-</html>
+}
