@@ -17,8 +17,8 @@ var serverVersion = new MySqlServerVersion(new Version(5, 5, 62));
 
 builder.Services.AddTransient<IRepository<Movie>, MovieRepository<Movie>>();
 // dunno why this is not work 
-// builder.Services.AddTransient<IRepository<Employee>, EmployeeRepository<Employee>>();
-builder.Services.AddTransient(typeof(IRepository<>), typeof(EmployeeRepository<>));
+builder.Services.AddTransient<IRepository<Employee>, EmployeeRepository<Employee>>();
+// builder.Services.AddTransient(typeof(IRepository<>), typeof(EmployeeRepository<>));
 builder.Services.AddRazorPages();
 
 builder.Services.AddDbContext<CustomerDbContext>(
