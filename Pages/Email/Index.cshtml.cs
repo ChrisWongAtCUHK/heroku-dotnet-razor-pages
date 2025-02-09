@@ -33,7 +33,7 @@ public class IndexModel : PageModel
         using (HttpClient client = new HttpClient())
         {
             string apiUrl = "https://raw.githubusercontent.com/aspsnippets/test/master/Sample.pdf";
- 
+
             //Read the file to Stream from URL.
             using (Stream stream = client.GetStreamAsync(apiUrl).Result)
             {
@@ -42,13 +42,13 @@ public class IndexModel : PageModel
                 int port = _configuration.GetValue<int>("Smtp:Port");
                 bool enableSsl = _configuration.GetValue<bool>("Smtp:EnableSsl");
                 bool defaultCredentials = _configuration.GetValue<bool>("Smtp:DefaultCredentials");
- 
+
                 using (MailMessage mm = new MailMessage(model.Email, model.To))
                 {
                     mm.Subject = model.Subject;
                     mm.Body = model.Body;
                     mm.IsBodyHtml = false;
- 
+
                     //Attaching file from URL.
                     mm.Attachments.Add(new Attachment(stream, Path.GetFileName(apiUrl)));
                     using (SmtpClient smtp = new SmtpClient())

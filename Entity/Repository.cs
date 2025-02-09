@@ -1,6 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using DotNetRazorPages.Models;
-using System.Linq.Expressions;
 using DotNetRazorPages.Data;
 
 namespace DotNetRazorPages.Entity;

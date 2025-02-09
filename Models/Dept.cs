@@ -1,5 +1,3 @@
-using System.ComponentModel.DataAnnotations;
-
 namespace DotNetRazorPages.Models;
 
 public enum Dept

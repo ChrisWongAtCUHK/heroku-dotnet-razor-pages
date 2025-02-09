@@ -34,7 +34,7 @@ builder.Services.AddDbContext<MovieDbContext>(
         .EnableSensitiveDataLogging()
         .EnableDetailedErrors()
 );
-    
+
 var isHeroku = !string.IsNullOrEmpty(Environment.GetEnvironmentVariable("DYNO"));
 builder.Services.Configure<ForwardedHeadersOptions>(options =>
 {
@@ -51,7 +51,8 @@ builder.Services.AddHttpsRedirection(options =>
     {
         options.RedirectStatusCode = StatusCodes.Status308PermanentRedirect;
         options.HttpsPort = 443;
-    };
+    }
+    ;
 });
 
 builder.Services.AddHttpClient();

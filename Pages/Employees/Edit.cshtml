@@ -89,12 +89,12 @@
 @*This jquery code is required to display the selected
         file name in the file upload controls*@
 @section JavaScript {
-    <script>
-        $(document).ready(function () {
-            $('.custom-file-input').on("change", function () {
-                var fileName = $(this).val().split("\\").pop();
-                $(this).next('.custom-file-label').html(fileName);
+        <script>
+            $(document).ready(function () {
+                $('.custom-file-input').on("change", function () {
+                    var fileName = $(this).val().split("\\").pop();
+                    $(this).next('.custom-file-label').html(fileName);
+                });
             });
-        });
-    </script>
+        </script>
 }

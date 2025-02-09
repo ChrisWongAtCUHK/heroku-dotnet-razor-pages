@@ -25,7 +25,7 @@ public class EditModel : PageModel
         }
 
         Customer = await _context.Customer.FirstOrDefaultAsync(m => m.Id == id);
-        
+
         if (Customer == null)
         {
             return NotFound();
