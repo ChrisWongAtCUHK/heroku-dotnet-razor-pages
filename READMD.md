@@ -27,6 +27,7 @@
 - [Entity Framework Core Tutorial](https://www.csharptutorial.net/entity-framework-core-tutorial/)
   - [Getting Started with Entity Framework Core](https://www.csharptutorial.net/entity-framework-core-tutorial/getting-started-with-entity-framework-core/)
   - [How to Log SQL Queries in EF Core](https://www.csharptutorial.net/entity-framework-core-tutorial/ef-core-log-sql-query/)
+  - [EF Core One-to-many Relationships](https://www.csharptutorial.net/entity-framework-core-tutorial/ef-core-one-to-many-relationship/)
 ```
 dotnet new page -n Index -na DotNetRazorPages.Pages.Area -o Pages/Area
 ```

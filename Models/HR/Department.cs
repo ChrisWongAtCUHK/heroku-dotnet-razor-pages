@@ -8,6 +8,8 @@ public class Department
 {
   public int Id { get; set; }
   public required string Name { get; set; }
+  // Collection navigation containing children
+  public required ICollection<Employee> Employees { get; set; }
 
   public static IRepository<Department>? _repository;
 
