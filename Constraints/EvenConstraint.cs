@@ -1,4 +1,4 @@
-namespace DotNetRazorPages.Constrains;
+namespace DotNetRazorPages.Constraints;
 
 public class EvenConstraint : IRouteConstraint
 {

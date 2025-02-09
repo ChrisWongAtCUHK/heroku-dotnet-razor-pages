@@ -1,4 +1,4 @@
-using DotNetRazorPages.Constrains;
+using DotNetRazorPages.Constraints;
 using DotNetRazorPages.Data;
 using DotNetRazorPages.Entity;
 using DotNetRazorPages.Models;
