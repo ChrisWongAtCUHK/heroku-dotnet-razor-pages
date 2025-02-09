@@ -3,7 +3,9 @@
 @using Microsoft.AspNetCore.Mvc.RazorPages;
 @using DotNetRazorPages.Entity;
 @using System.Linq.Expressions;
+@using Microsoft.EntityFrameworkCore
 @using Models;
+@using System.Text.RegularExpressions
 
 @{
     ViewData["Title"] = "Search Movies";
@@ -61,7 +63,7 @@
 
         public async Task<IActionResult> OnPostAsync()
         {
-            Expression<Func<Movie, bool>> filter = m => m.Name == movie!.Name;
+            Expression<Func<Movie, bool>> filter = m => EF.Functions.Like(m.Name,  "%" + movie!.Name + "%");
             movieList = await _repository.ReadAllAsync(filter);
             return Page();
         }
