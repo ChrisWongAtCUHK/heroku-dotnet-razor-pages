@@ -4,6 +4,6 @@ using System.Linq.Expressions;
 
 namespace DotNetRazorPages.Entity.HR;
 
-public class DepartmentRepository<T>(DepartmentDbContext context) : Repository<T>(context) where T : class
+public class DepartmentRepository<T>(HRDbContext context) : Repository<T>(context) where T : class
 {
 }

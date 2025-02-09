@@ -44,16 +44,7 @@ builder.Services.AddDbContext<MovieDbContext>(
         .EnableDetailedErrors()
 );
 
-builder.Services.AddDbContext<EmployeeDbContext>(
-    dbContextOptions => dbContextOptions
-        .UseMySql(connectionString, serverVersion)
-        .LogTo(_writer.WriteLine)
-        .EnableSensitiveDataLogging()
-        .EnableDetailedErrors()
-        .EnableSensitiveDataLogging()
-);
-
-builder.Services.AddDbContext<DepartmentDbContext>(
+builder.Services.AddDbContext<HRDbContext>(
     dbContextOptions => dbContextOptions
         .UseMySql(connectionString, serverVersion)
         .LogTo(_writer.WriteLine)

@@ -2,6 +2,6 @@
 
 namespace DotNetRazorPages.Entity.HR;
 
-public class EmployeeRepository<T>(EmployeeDbContext context) : Repository<T>(context) where T : class
+public class EmployeeRepository<T>(HRDbContext context) : Repository<T>(context) where T : class
 {
 }

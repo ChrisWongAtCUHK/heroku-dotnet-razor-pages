@@ -3,8 +3,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DotNetRazorPages.Data.HR;
 
-public class EmployeeDbContext(DbContextOptions<EmployeeDbContext> options) : DbContext(options)
+public class HRDbContext(DbContextOptions<HRDbContext> options) : DbContext(options)
 {
     public DbSet<Employee> Employees { get; set; }
+     public DbSet<Department> Departments { get; set; }
 
 }
