@@ -21,6 +21,7 @@
 - [ASP.NET Core razor pages validation](https://csharp-video-tutorials.blogspot.com/2020/01/aspnet-core-razor-pages-validation.html)
 - [ASP.NET Core Razor Pages : CRUD Operations with Repository Pattern and Entity Framework Core](https://www.hosting.work/aspnet-core-razor-pages-repository-pattern-ef-core/)
   - [Creating Pagination for Records](https://www.hosting.work/aspnet-core-razor-pages-repository-pattern-ef-core/#pagination)
+  - [Update Movie with Repository Pattern](https://www.hosting.work/aspnet-core-razor-pages-repository-pattern-ef-core/#update)
 ```
 dotnet new page -n Index -na DotNetRazorPages.Pages.Area -o Pages/Area
 ```

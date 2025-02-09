@@ -29,13 +29,25 @@ public class Repository<T>(MovieDbContext context) : IRepository<T> where T : cl
 
         return result;
     }
-    public async Task DeleteAsync(int id)
+    public async Task UpdateAsync(T entity)
     {
-        var entity = await context.Set<T>().FindAsync(id);
         if (entity == null)
             throw new ArgumentNullException(nameof(entity));
 
-        context.Set<T>().Remove(entity);
-        await context.SaveChangesAsync();
+        _context.Update(entity);
+        await _context.SaveChangesAsync();
+    }
+    public async Task<T?> ReadAsync(int id)
+    {
+        return await _context.Set<T>().FindAsync(id);
+    }
+    public async Task DeleteAsync(int id)
+    {
+        var entity = await _context.Set<T>().FindAsync(id);
+        if (entity == null)
+            throw new ArgumentNullException(nameof(entity));
+
+        _context.Set<T>().Remove(entity);
+        await _context.SaveChangesAsync();
     }
 }
