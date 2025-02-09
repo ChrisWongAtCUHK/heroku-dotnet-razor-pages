@@ -5,6 +5,6 @@ namespace DotNetRazorPages.Data.HR;
 
 public class EmployeeDbContext(DbContextOptions<EmployeeDbContext> options) : DbContext(options)
 {
-    public DbSet<Employee> Employee { get; set; }
+    public DbSet<Employee> Employees { get; set; }
 
 }
