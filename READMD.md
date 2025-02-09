@@ -32,7 +32,7 @@ heroku buildpacks:set heroku/dotnet
 playwright codegen --target python -o playwright/example.py "https://heroku-dotnet-razor-pages-742922653e59.herokuapp.com/"
 ```
 ```
-pytest playwright/tests.py --tracing on --headed --slowmo 1000
+pytest playwright/Customers/tests.py --tracing on --headed --slowmo 1000
 ```
 ```
 playwright show-trace test-results/playwright-tests-py-test-example-chromium/trace.zip
