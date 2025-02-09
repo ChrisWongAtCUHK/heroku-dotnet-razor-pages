@@ -6,6 +6,9 @@ using DotNetRazorPages.Services;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.EntityFrameworkCore;
 
+// Write logs to logs.txt
+StreamWriter _writer = new("logs.txt", true);
+
 var builder = WebApplication.CreateBuilder(args);
 
 var mysqlUsername = Environment.GetEnvironmentVariable("MYSQL_USERNAME");
@@ -40,9 +43,10 @@ builder.Services.AddDbContext<MovieDbContext>(
 builder.Services.AddDbContext<HRDbContext>(
     dbContextOptions => dbContextOptions
         .UseMySql(connectionString, serverVersion)
-        .LogTo(Console.WriteLine, LogLevel.Information)
+        .LogTo(_writer.WriteLine)
         .EnableSensitiveDataLogging()
         .EnableDetailedErrors()
+        .EnableSensitiveDataLogging()
 );
 
 var isHeroku = !string.IsNullOrEmpty(Environment.GetEnvironmentVariable("DYNO"));
@@ -88,3 +92,4 @@ app.UseRouting();
 app.MapRazorPages();
 
 app.Run();
+
