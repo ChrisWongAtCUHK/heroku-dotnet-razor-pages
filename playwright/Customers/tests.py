@@ -3,7 +3,7 @@ from playwright.sync_api import Page, expect # type: ignore
 
 def test_example(page: Page) -> None:
     baseUrl = "https://heroku-dotnet-razor-pages-742922653e59.herokuapp.com/"
-    screenshotsPath = "playwright/Customers/screenhots/"
+    screenshotsPath = "playwright/Customers/screenshots/"
     page.goto(baseUrl + "Customers")
 
     # Customers/Index
@@ -22,6 +22,12 @@ def test_example(page: Page) -> None:
     page.screenshot(path=screenshotsPath + "Update/Update.png")
     page.get_by_role("button", name="Save").click()
     page.screenshot(path=screenshotsPath + "Update/Customers.png")
+
+    # Customers delete
+    page.goto(baseUrl + "Customers")
+    # TODO: insert or update SQL before test
+    page.get_by_role("row", name="2 Customer 2 Edit | delete").get_by_role("button", name="delete").click()
+    page.screenshot(path="playwright/Customers/screenshots/Delete/Customers.png")
     page.close()
 
 
