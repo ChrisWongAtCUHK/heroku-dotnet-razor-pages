@@ -35,5 +35,5 @@ playwright codegen --target python -o playwright/example.py "https://heroku-dotn
 pytest playwright/Customers/tests.py --tracing on --headed --slowmo 1000
 ```
 ```
-playwright show-trace test-results/playwright-tests-py-test-example-chromium/trace.zip
+playwright show-trace test-results/playwright-customers-tests-py-test-example-chromium/trace.zip
 ```
