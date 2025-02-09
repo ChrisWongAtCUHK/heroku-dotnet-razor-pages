@@ -17,8 +17,9 @@ var connectionString = $"server=sql12.freesqldatabase.com;uid={mysqlUsername};pw
 var serverVersion = new MySqlServerVersion(new Version(5, 5, 62));
 
 builder.Services.AddTransient<IRepository<Movie>, Repository<Movie>>();
-builder.Services.AddTransient<IRepository<Employee>, EmployeeRepository<Employee>>();
-//builder.Services.AddTransient(typeof(IRepository<>), typeof(EmployeeRepository<>));
+// dunno why this is not work
+// builder.Services.AddTransient<IRepository<Employee>, EmployeeRepository<Employee>>();
+builder.Services.AddTransient(typeof(IRepository<>), typeof(EmployeeRepository<>));
 builder.Services.AddRazorPages();
 
 builder.Services.AddDbContext<CustomerDbContext>(
