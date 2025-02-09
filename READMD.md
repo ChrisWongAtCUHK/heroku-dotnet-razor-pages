@@ -27,3 +27,13 @@ dotnet new page -n Index -na DotNetRazorPages.Pages.Area -o Pages/Area
 heroku create --buildpack http://github.com/heroku/dotnet-buildpack.git
 heroku buildpacks:set heroku/dotnet
 ```
+# Playwright
+```
+playwright codegen --target python -o playwright/example.py "https://heroku-dotnet-razor-pages-742922653e59.herokuapp.com/"
+```
+```
+pytest playwright/tests.py --tracing on --headed --slowmo 1000
+```
+```
+playwright show-trace test-results/playwright-tests-py-test-example-chromium/trace.zip
+```
