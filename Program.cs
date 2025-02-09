@@ -2,7 +2,7 @@ using DotNetRazorPages.Constrains;
 using DotNetRazorPages.Data;
 using DotNetRazorPages.Entity;
 using DotNetRazorPages.Models;
-using DotNetRazorPages.Services;
+using DotNetRazorPages.Models.HR;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.EntityFrameworkCore;
 
@@ -18,7 +18,7 @@ var serverVersion = new MySqlServerVersion(new Version(5, 5, 62));
 
 builder.Services.AddTransient<IRepository<Movie>, MovieRepository<Movie>>();
 // dunno why this is not work 
-// builder.Services.AddTransient<IRepository<DotNetRazorPages.Models.HR.Employee>, EmployeeRepository<DotNetRazorPages.Models.HR.Employee>>();
+// builder.Services.AddTransient<IRepository<Employee>, EmployeeRepository<Employee>>();
 builder.Services.AddTransient(typeof(IRepository<>), typeof(EmployeeRepository<>));
 builder.Services.AddRazorPages();
 
@@ -72,7 +72,6 @@ builder.Services.AddHttpsRedirection(options =>
 });
 
 builder.Services.AddHttpClient();
-builder.Services.AddScoped<IEmployeeRepository, MockEmployeeRepository>();
 
 builder.Services.AddRouting(options =>
     options.ConstraintMap.Add("even", typeof(EvenConstraint)));
