@@ -1,4 +1,4 @@
-﻿using DotNetRazorPages.Models.HR;
+﻿using DotNetRazorPages.Models;
 
 namespace DotNetRazorPages.Paging;
 public class EmployeeList

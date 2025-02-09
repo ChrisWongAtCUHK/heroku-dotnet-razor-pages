@@ -1,4 +1,4 @@
-using DotNetRazorPages.Models.HR;
+using DotNetRazorPages.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace DotNetRazorPages.Data;

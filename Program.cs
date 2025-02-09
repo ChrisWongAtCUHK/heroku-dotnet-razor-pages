@@ -2,7 +2,6 @@ using DotNetRazorPages.Constrains;
 using DotNetRazorPages.Data;
 using DotNetRazorPages.Entity;
 using DotNetRazorPages.Models;
-using DotNetRazorPages.Models.HR;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.EntityFrameworkCore;
 

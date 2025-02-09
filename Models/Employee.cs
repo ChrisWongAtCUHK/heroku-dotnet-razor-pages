@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace DotNetRazorPages.Models.HR;
+namespace DotNetRazorPages.Models;
 [Table("employees")]
 public class Employee(int id)
 {
