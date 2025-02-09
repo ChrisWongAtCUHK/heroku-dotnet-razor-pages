@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using DotNetRazorPages.Data;
+using DotNetRazorPages.Data.HR;
 using System.Linq.Expressions;
 
-namespace DotNetRazorPages.Entity;
+namespace DotNetRazorPages.Entity.HR;
 
 public class EmployeeRepository<T>(EmployeeDbContext context) : IRepository<T> where T : class
 {

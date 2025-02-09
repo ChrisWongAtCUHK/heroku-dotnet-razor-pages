@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace DotNetRazorPages.Models;
+namespace DotNetRazorPages.Models.HR;
 [Table("employees")]
 public class Employee
 {

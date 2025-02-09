@@ -1,7 +1,7 @@
-using DotNetRazorPages.Models;
+using DotNetRazorPages.Models.HR;
 using Microsoft.EntityFrameworkCore;
 
-namespace DotNetRazorPages.Data;
+namespace DotNetRazorPages.Data.HR;
 
 public class EmployeeDbContext(DbContextOptions<EmployeeDbContext> options) : DbContext(options)
 {

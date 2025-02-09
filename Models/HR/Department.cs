@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using DotNetRazorPages.Entity;
 
-namespace DotNetRazorPages.Models;
+namespace DotNetRazorPages.Models.HR;
 
 [Table("departments")]
 public class Department
