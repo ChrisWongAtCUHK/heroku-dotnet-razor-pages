@@ -1,6 +1,5 @@
 using DotNetRazorPages.Constrains;
 using DotNetRazorPages.Data;
-using DotNetRazorPages.Data.HR;
 using DotNetRazorPages.Entity;
 using DotNetRazorPages.Models;
 using DotNetRazorPages.Services;
@@ -42,7 +41,7 @@ builder.Services.AddDbContext<MovieDbContext>(
         .EnableDetailedErrors()
 );
 
-builder.Services.AddDbContext<HRDbContext>(
+builder.Services.AddDbContext<EmployeeDbContext>(
     dbContextOptions => dbContextOptions
         .UseMySql(connectionString, serverVersion)
         .LogTo(_writer.WriteLine)

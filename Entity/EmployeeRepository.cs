@@ -1,13 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using DotNetRazorPages.Data.HR;
+using DotNetRazorPages.Data;
 using System.Linq.Expressions;
 
 namespace DotNetRazorPages.Entity;
 
-public class EmployeeRepository<T>(HRDbContext context) : IRepository<T> where T : class
+public class EmployeeRepository<T>(EmployeeDbContext context) : IRepository<T> where T : class
 {
 #pragma warning disable CS9124 // Parameter is captured into the state of the enclosing type and its value is also used to initialize a field, property, or event.
-    private readonly HRDbContext _context = context;
+    private readonly EmployeeDbContext _context = context;
 #pragma warning restore CS9124 // Parameter is captured into the state of the enclosing type and its value is also used to initialize a field, property, or event.
 
     public async Task CreateAsync(T entity)
