@@ -1,5 +1,6 @@
 using DotNetRazorPages.Constrains;
 using DotNetRazorPages.Data;
+using DotNetRazorPages.Data.HR;
 using DotNetRazorPages.Entity;
 using DotNetRazorPages.Services;
 using Microsoft.AspNetCore.HttpOverrides;
@@ -13,6 +14,7 @@ var connectionString = $"server=sql12.freesqldatabase.com;uid={mysqlUsername};pw
 var serverVersion = new MySqlServerVersion(new Version(5, 5, 62));
 
 builder.Services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
+builder.Services.AddTransient(typeof(IRepository<>), typeof(EmployeeRepository<>));
 builder.Services.AddRazorPages();
 
 builder.Services.AddDbContext<CustomerDbContext>(
@@ -30,6 +32,14 @@ builder.Services.AddDbContext<MovieDbContext>(
         .UseMySql(connectionString, serverVersion)
         // The following three options help with debugging, but should
         // be changed or removed for production.
+        .LogTo(Console.WriteLine, LogLevel.Information)
+        .EnableSensitiveDataLogging()
+        .EnableDetailedErrors()
+);
+
+builder.Services.AddDbContext<HRDbContext>(
+    dbContextOptions => dbContextOptions
+        .UseMySql(connectionString, serverVersion)
         .LogTo(Console.WriteLine, LogLevel.Information)
         .EnableSensitiveDataLogging()
         .EnableDetailedErrors()

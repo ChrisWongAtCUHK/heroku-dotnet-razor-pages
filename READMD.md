@@ -24,6 +24,7 @@
   - [Update Movie with Repository Pattern](https://www.hosting.work/aspnet-core-razor-pages-repository-pattern-ef-core/#update)
   - [Delete Movie with Repository Pattern](https://www.hosting.work/aspnet-core-razor-pages-repository-pattern-ef-core/#delete)
   - [Filtering Entity by LINQ Expression](https://www.hosting.work/aspnet-core-razor-pages-repository-pattern-ef-core/#filter-linq-expression)
+- [Getting Started with Entity Framework Core](https://www.csharptutorial.net/entity-framework-core-tutorial/getting-started-with-entity-framework-core/)
 ```
 dotnet new page -n Index -na DotNetRazorPages.Pages.Area -o Pages/Area
 ```
