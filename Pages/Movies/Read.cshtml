@@ -79,6 +79,13 @@
     }
 </table>
 
+@* add a div containing the page-model attribute and so the tag helper will convert this div to pagination links 
+be binded to the respective property defined on the tag helper class
+page-model ---- PageModel
+page-name ----  PageName
+page-classes-enabled --- PageClassesEnabled
+page-class --- PageClass
+page-class-selected --- PageClassSelected *@
 <div class="pagingDiv" page-model="Model.movieList.PagingInfo" page-name="Read" page-classes-enabled="true"
     page-class="paging" page-class-selected="active"></div>
 
@@ -103,15 +110,19 @@
                 PagingInfo = pagingInfo
             };
 
+            // set the page size as 10 which you can change according to your wish
             int pageSize = 10;
             pagingInfo.CurrentPage = id == 0 ? 1 : id;
             pagingInfo.ItemsPerPage = pageSize;
 
+            // the value of the starting record for the page is calculated and added to the skip variable
             var skip = pageSize * (Convert.ToInt32(id) - 1);
             var resultTuple = await _repository.ReadAllFilterAsync(skip, pageSize);
 
+            // method returns Tuple whose value is extracted and provided to the TotalItems of pagingInfo and movie of movieList
             pagingInfo.TotalItems = resultTuple.Item2;
             movieList.Movies = resultTuple.Item1;
+            
             movieList.PagingInfo = pagingInfo;
         }
 

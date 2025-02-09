@@ -17,8 +17,12 @@ public class PageLinkTagHelper : TagHelper
         _urlHelperFactory = urlHelperFactory;
     }
 
+    // There is another property of type ViewContext which is binded with the View Context Data which 
+    // includes routing data, ViewData, ViewBag, TempData, ModelState, current HTTP request, etc.
     [ViewContext]
     [HtmlAttributeNotBound]
+    // The use of [HtmlAttributeNotBound] attribute basically says that this attribute isn’t one that 
+    // you intend to set via a tag helper attribute in the razor page.
     public ViewContext? ViewContext { get; set; }
 
     public PagingInfo? PageModel { get; set; }
@@ -37,9 +41,9 @@ public class PageLinkTagHelper : TagHelper
 
     public override void Process(TagHelperContext context, TagHelperOutput output)
     {
-#pragma warning disable CS8604 // Possible null reference argument.
-        IUrlHelper urlHelper = _urlHelperFactory.GetUrlHelper(ViewContext);
-#pragma warning restore CS8604 // Possible null reference argument.
+        // The tag helper gets the object of IUrlHelperFactory from the dependency injection feature and 
+        // uses it to create the paging anchor tags.
+        IUrlHelper urlHelper = _urlHelperFactory.GetUrlHelper(ViewContext ??  new ViewContext());
         TagBuilder result = new TagBuilder("div");
         string anchorInnerHtml = "";
 

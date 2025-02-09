@@ -20,9 +20,11 @@ public class Repository<T>(MovieDbContext context) : IRepository<T> where T : cl
     public async Task<(List<T>, int)> ReadAllFilterAsync(int skip, int take)
     {
         var all = context.Set<T>();
+        // fetching only the records of the current page by the use of Linq Skip and Take methods
         var relevant = await all.Skip(skip).Take(take).ToListAsync();
         var total = all.Count();
 
+        // the records along with the count of all the records in a Tuple.
         (List<T>, int) result = (relevant, total);
 
         return result;
