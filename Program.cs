@@ -18,6 +18,7 @@ var serverVersion = new MySqlServerVersion(new Version(5, 5, 62));
 builder.Services.AddTransient<IRepository<Movie>, MovieRepository<Movie>>();
 // dunno why this is not work 
 builder.Services.AddTransient<IRepository<Employee>, EmployeeRepository<Employee>>();
+builder.Services.AddTransient<IRepository<Department>, DepartmentRepository<Department>>();
 // builder.Services.AddTransient(typeof(IRepository<>), typeof(EmployeeRepository<>));
 builder.Services.AddRazorPages();
 
@@ -42,6 +43,15 @@ builder.Services.AddDbContext<MovieDbContext>(
 );
 
 builder.Services.AddDbContext<EmployeeDbContext>(
+    dbContextOptions => dbContextOptions
+        .UseMySql(connectionString, serverVersion)
+        .LogTo(_writer.WriteLine)
+        .EnableSensitiveDataLogging()
+        .EnableDetailedErrors()
+        .EnableSensitiveDataLogging()
+);
+
+builder.Services.AddDbContext<DepartmentDbContext>(
     dbContextOptions => dbContextOptions
         .UseMySql(connectionString, serverVersion)
         .LogTo(_writer.WriteLine)
