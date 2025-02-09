@@ -22,6 +22,7 @@
 - [ASP.NET Core Razor Pages : CRUD Operations with Repository Pattern and Entity Framework Core](https://www.hosting.work/aspnet-core-razor-pages-repository-pattern-ef-core/)
   - [Creating Pagination for Records](https://www.hosting.work/aspnet-core-razor-pages-repository-pattern-ef-core/#pagination)
   - [Update Movie with Repository Pattern](https://www.hosting.work/aspnet-core-razor-pages-repository-pattern-ef-core/#update)
+  - [Delete Movie with Repository Pattern](https://www.hosting.work/aspnet-core-razor-pages-repository-pattern-ef-core/#delete)
 ```
 dotnet new page -n Index -na DotNetRazorPages.Pages.Area -o Pages/Area
 ```

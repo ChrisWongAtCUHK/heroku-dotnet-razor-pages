@@ -69,6 +69,8 @@
                 </a>
             </td>
             <td>
+                @* asp-page-handler – specifies "delete" hander method to be called when the form is submitted. 
+                   asp-route-id – specifies the value of id to be passes on the route. This will contain the id of the record *@
                 <form asp-page-handler="Delete" asp-route-id="@m.Id" method="post">
                     <button type="submit" class="btn btn-sm btn-danger">
                         Delete
@@ -122,7 +124,7 @@ page-class-selected --- PageClassSelected *@
             // method returns Tuple whose value is extracted and provided to the TotalItems of pagingInfo and movie of movieList
             pagingInfo.TotalItems = resultTuple.Item2;
             movieList.Movies = resultTuple.Item1;
-            
+
             movieList.PagingInfo = pagingInfo;
         }
 
