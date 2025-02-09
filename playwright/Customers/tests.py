@@ -8,8 +8,7 @@ def test_example(page: Page) -> None:
 
     # Customers/Index
     page.screenshot(path=screenshotsPath + "Index.png")
-    page.get_by_role("link", name="Create", exact=True).click()
-    page.locator("#Customer_Name").click()
+    page.get_by_role("link", name="Create New").click()
     page.locator("#Customer_Name").fill("Create by Playwright")
     page.screenshot(path=screenshotsPath + "Create/Create.png")
     page.get_by_role("button", name="Submit").click()
