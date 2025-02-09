@@ -16,7 +16,7 @@ var mysqlPassword = Environment.GetEnvironmentVariable("MYSQL_PASSWORD");
 var connectionString = $"server=sql12.freesqldatabase.com;uid={mysqlUsername};pwd={mysqlPassword};database=sql12761413";
 var serverVersion = new MySqlServerVersion(new Version(5, 5, 62));
 
-builder.Services.AddTransient<IRepository<Movie>, Repository<Movie>>();
+builder.Services.AddTransient<IRepository<Movie>, MovieRepository<Movie>>();
 // dunno why this is not work
 // builder.Services.AddTransient<IRepository<Employee>, EmployeeRepository<Employee>>();
 builder.Services.AddTransient(typeof(IRepository<>), typeof(EmployeeRepository<>));

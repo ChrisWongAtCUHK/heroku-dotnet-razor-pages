@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 
 namespace DotNetRazorPages.Entity;
 
-public class Repository<T>(MovieDbContext context) : IRepository<T> where T : class
+public class MovieRepository<T>(MovieDbContext context) : IRepository<T> where T : class
 {
 #pragma warning disable CS9124 // Parameter is captured into the state of the enclosing type and its value is also used to initialize a field, property, or event.
     private readonly MovieDbContext _context = context;
