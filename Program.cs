@@ -2,6 +2,7 @@ using DotNetRazorPages.Constrains;
 using DotNetRazorPages.Data;
 using DotNetRazorPages.Data.HR;
 using DotNetRazorPages.Entity;
+using DotNetRazorPages.Models;
 using DotNetRazorPages.Services;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.EntityFrameworkCore;
@@ -16,8 +17,9 @@ var mysqlPassword = Environment.GetEnvironmentVariable("MYSQL_PASSWORD");
 var connectionString = $"server=sql12.freesqldatabase.com;uid={mysqlUsername};pwd={mysqlPassword};database=sql12761413";
 var serverVersion = new MySqlServerVersion(new Version(5, 5, 62));
 
-builder.Services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
-builder.Services.AddTransient(typeof(IRepository<>), typeof(EmployeeRepository<>));
+builder.Services.AddTransient<IRepository<Movie>, Repository<Movie>>();
+builder.Services.AddTransient<IRepository<Employee>, EmployeeRepository<Employee>>();
+//builder.Services.AddTransient(typeof(IRepository<>), typeof(EmployeeRepository<>));
 builder.Services.AddRazorPages();
 
 builder.Services.AddDbContext<CustomerDbContext>(

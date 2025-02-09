@@ -20,7 +20,7 @@ public class EmployeeRepository<T>(HRDbContext context) : IRepository<T> where T
 
     public async Task<(List<T>, int)> ReadAllFilterAsync(int skip, int take)
     {
-        var all = context.Set<T>();
+        var all = _context.Set<T>();
         // fetching only the records of the current page by the use of Linq Skip and Take methods
         var relevant = await all.Skip(skip).Take(take).ToListAsync();
         var total = all.Count();
