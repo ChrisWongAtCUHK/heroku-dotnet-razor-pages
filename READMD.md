@@ -23,6 +23,7 @@
   - [Creating Pagination for Records](https://www.hosting.work/aspnet-core-razor-pages-repository-pattern-ef-core/#pagination)
   - [Update Movie with Repository Pattern](https://www.hosting.work/aspnet-core-razor-pages-repository-pattern-ef-core/#update)
   - [Delete Movie with Repository Pattern](https://www.hosting.work/aspnet-core-razor-pages-repository-pattern-ef-core/#delete)
+  - [Filtering Entity by LINQ Expression](https://www.hosting.work/aspnet-core-razor-pages-repository-pattern-ef-core/#filter-linq-expression)
 ```
 dotnet new page -n Index -na DotNetRazorPages.Pages.Area -o Pages/Area
 ```

@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using DotNetRazorPages.Data;
+using System.Linq.Expressions;
 
 namespace DotNetRazorPages.Entity;
 
@@ -49,5 +50,15 @@ public class Repository<T>(MovieDbContext context) : IRepository<T> where T : cl
 
         _context.Set<T>().Remove(entity);
         await _context.SaveChangesAsync();
+    }
+
+    public async Task<List<T>> ReadAllAsync()
+    {
+        return await context.Set<T>().ToListAsync();
+    }
+
+    public async Task<List<T>> ReadAllAsync(Expression<Func<T, bool>> filter)
+    {
+        return await context.Set<T>().Where(filter).ToListAsync();
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace DotNetRazorPages.Entity;
+﻿using System.Linq.Expressions;
+
+namespace DotNetRazorPages.Entity;
 
 public interface IRepository<T> where T : class
 {
@@ -8,5 +10,7 @@ public interface IRepository<T> where T : class
     Task UpdateAsync(T entity);
     Task<T?> ReadAsync(int id);
     Task DeleteAsync(int id);
+    Task<List<T>> ReadAllAsync();
+    Task<List<T>> ReadAllAsync(Expression<Func<T, bool>> filter);
 }
 
