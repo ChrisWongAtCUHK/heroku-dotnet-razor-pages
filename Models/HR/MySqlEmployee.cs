@@ -14,5 +14,5 @@ public class MySqlEmployee
   public required decimal Salary { get; set; }
   [Required]
   public required string DepartmentName { get; set; } 
-  public required string Skills { get; set; }
+  public string? Skills { get; set; }
 }

@@ -15,8 +15,8 @@ BEGIN
   FROM
     employees e
     INNER JOIN departments d ON d.id = e.departmentId
-    INNER JOIN employeesSkills es ON es.employeeId = e.id
-    INNER JOIN skills s ON s.id = es.skillId
+    LEFT JOIN employeesSkills es ON es.employeeId = e.id
+    LEFT JOIN skills s ON s.id = es.skillId
   GROUP BY
     e.id
   LIMIT
