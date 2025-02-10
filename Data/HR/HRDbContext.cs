@@ -8,7 +8,6 @@ public class HRDbContext(DbContextOptions<HRDbContext> options) : DbContext(opti
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<MySqlEmployee>().HasNoKey();
-        modelBuilder.Entity<TotalEmployee>().HasNoKey();;
     }
 
 }
