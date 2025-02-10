@@ -32,6 +32,7 @@
   - [ASP.NET Core razor pages client side validation](https://csharp-video-tutorials.blogspot.com/2020/01/aspnet-core-razor-pages-client-side.html)
   - [Delete operation in asp.net core razor pages](https://csharp-video-tutorials.blogspot.com/2020/01/delete-operation-in-aspnet-core-razor.html)
   - [Partial views in asp.net core](https://csharp-video-tutorials.blogspot.com/2020/01/partial-views-in-aspnet-core.html)
+  - [ASP.NET Core view components](https://csharp-video-tutorials.blogspot.com/2020/01/aspnet-core-view-components.html)
 ```
 dotnet new page -n Index -na DotNetRazorPages.Pages.Area -o Pages/Area
 ```
