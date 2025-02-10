@@ -30,6 +30,7 @@
   - [EF Core One-to-many Relationships](https://www.csharptutorial.net/entity-framework-core-tutorial/ef-core-one-to-many-relationship/)
 - [ASP.NET Core Razor Pages Tutorial for Beginners](https://csharp-video-tutorials.blogspot.com/2020/01/aspnet-core-razor-pages-client-side.html#google_vignette)
   - [ASP.NET Core razor pages client side validation](https://csharp-video-tutorials.blogspot.com/2020/01/aspnet-core-razor-pages-client-side.html)
+  - [Delete operation in asp.net core razor pages](https://csharp-video-tutorials.blogspot.com/2020/01/delete-operation-in-aspnet-core-razor.html)
 ```
 dotnet new page -n Index -na DotNetRazorPages.Pages.Area -o Pages/Area
 ```

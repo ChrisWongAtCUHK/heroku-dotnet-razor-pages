@@ -7,4 +7,5 @@ public interface IEmployeeRepository
   Employee? GetEmployee(int id);
   Employee? Update(List<Employee> employees, Employee updatedEmployee);
   Employee Add(List<Employee> employees, Employee newEmployee);
+  Employee Delete(List<Employee> employees, int id);
 }
