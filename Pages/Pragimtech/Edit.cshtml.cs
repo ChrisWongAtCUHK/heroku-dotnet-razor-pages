@@ -116,18 +116,29 @@ public class EditModel(IEmployeeRepository employeeRepository,
 
   private string? ProcessUploadedFile()
   {
-    string? uniqueFileName = null;
+    string? photoPath = null;
 
     if (Photo != null)
     {
       string uploadsFolder = Path.Combine(webHostEnvironment.WebRootPath, "images");
-      string filePath = Path.Combine(uploadsFolder, Employee!.PhotoPath ?? "noimage.jpg");
+
+      // for add
+      if(Employee.Id == 0)
+      {
+        photoPath = Employee.Name + ".png";
+      }
+      else 
+      {
+        // for edit
+        photoPath = Employee!.PhotoPath ?? "noimage.jpg";
+      }
+      string filePath = Path.Combine(uploadsFolder, photoPath);
       using (var fileStream = new FileStream(filePath, FileMode.Create))
       {
         Photo.CopyTo(fileStream);
       }
     }
 
-    return uniqueFileName;
+    return photoPath;
   }
 }
