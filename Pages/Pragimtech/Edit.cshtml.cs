@@ -28,20 +28,21 @@ public class EditModel(IEmployeeRepository employeeRepository,
   // Make the id parameter optional
   public IActionResult OnGet(int? id)
   {
+    if (TempData["Employees"] != null)
+    {
+      var tempData = TempData["Employees"] ?? string.Empty;
+      Employees = JsonConvert.DeserializeObject<List<Employee>>((string)tempData);
+    }
     // if id parameter has value, retrieve the existing
     // employee details, else create a new Employee
     if (id.HasValue)
     {
-      if (TempData["Employees"] != null)
-      {
-        var tempData = TempData["Employees"] ?? string.Empty;
-        Employees = JsonConvert.DeserializeObject<List<Employee>>((string)tempData);
-      }
-      Employee = Employees.FirstOrDefault<Employee>(e => e.Id == id.Value ) ?? new Employee()
+      Employee = Employees.FirstOrDefault<Employee>(e => e.Id == id.Value) ?? new Employee()
       {
         Name = string.Empty,
         Email = string.Empty
       };
+
     }
     else
     {
@@ -53,6 +54,7 @@ public class EditModel(IEmployeeRepository employeeRepository,
       };
     }
 
+    TempData["Employees"] = JsonConvert.SerializeObject(Employees);
     if (Employee == null)
     {
       return RedirectToPage("/NotFound");
@@ -128,11 +130,11 @@ public class EditModel(IEmployeeRepository employeeRepository,
       string uploadsFolder = Path.Combine(webHostEnvironment.WebRootPath, "images");
 
       // for add
-      if(Employee.Id == 0)
+      if (Employee.Id == 0)
       {
         photoPath = Employee.Name + ".png";
       }
-      else 
+      else
       {
         // for edit
         photoPath = Employee!.PhotoPath ?? "noimage.jpg";
