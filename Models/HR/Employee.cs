@@ -16,4 +16,6 @@ public class Employee
   public required decimal Salary { get; set; }
   public int DepartmentId { get; set; }
   public required Department Department { get; set; }
+
+  public List<Skill> Skills { get; set; } = [];
 }
