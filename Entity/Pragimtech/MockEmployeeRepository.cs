@@ -4,7 +4,7 @@ namespace DotNetRazorPages.Entity.Pragimtech;
 
 public class MockEmployeeRepository : IEmployeeRepository
 {
-    private List<Employee> _employeeList;
+    private readonly List<Employee> _employeeList;
 
     public MockEmployeeRepository()
     {
@@ -21,7 +21,7 @@ public class MockEmployeeRepository : IEmployeeRepository
         ];
     }
 
-    public IEnumerable<Employee> GetAllEmployees()
+    public List<Employee> GetAllEmployees()
     {
         return _employeeList;
     }
@@ -31,9 +31,9 @@ public class MockEmployeeRepository : IEmployeeRepository
         return _employeeList.FirstOrDefault(e => e.Id == id);
     }
 
-    public Employee? Update(Employee updatedEmployee)
+    public Employee? Update(List<Employee> employees, Employee updatedEmployee)
     {
-        Employee? employee = _employeeList.FirstOrDefault(e => e.Id == updatedEmployee.Id);
+        Employee? employee = employees.FirstOrDefault(e => e.Id == updatedEmployee.Id);
 
         if (employee != null)
         {
@@ -50,10 +50,10 @@ public class MockEmployeeRepository : IEmployeeRepository
         };
     }
 
-    public Employee Add(Employee newEmployee)
+    public Employee Add(List<Employee> employees, Employee newEmployee)
     {
         newEmployee.Id = _employeeList.Max(e => e.Id) + 1;
-        _employeeList.Add(newEmployee);
+        employees.Add(newEmployee);
         return newEmployee;
     }
 }

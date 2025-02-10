@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using DotNetRazorPages.Entity.Pragimtech;
 using DotNetRazorPages.Models.Pragimtech;
+using Newtonsoft.Json;
 
 namespace DotNetRazorPages.Pages.Pragimtech;
 public class EditModel(IEmployeeRepository employeeRepository,
@@ -22,6 +23,7 @@ public class EditModel(IEmployeeRepository employeeRepository,
   public bool Notify { get; set; }
 
   public required string Message { get; set; }
+  public required List<Employee> Employees { get; set; }
 
   // Make the id parameter optional
   public IActionResult OnGet(int? id)
@@ -70,12 +72,16 @@ public class EditModel(IEmployeeRepository employeeRepository,
         Employee.PhotoPath = ProcessUploadedFile() ?? string.Empty;
       }
 
+      if (TempData["Employees"] != null)
+      {
+        var tempDaata = TempData["Employees"] ?? string.Empty;
+        Employees = JsonConvert.DeserializeObject<List<Employee>>((string)tempDaata);
+      }
       // If Employee ID > 0, call Update() to update existing 
       // employee details else call Add() to add new employee
       if (Employee.Id > 0)
       {
-
-        Employee = _employeeRepository.Update(Employee) ?? new Employee()
+        Employee = _employeeRepository.Update(Employees, Employee) ?? new Employee()
         {
           Name = string.Empty,
           Email = string.Empty
@@ -83,8 +89,9 @@ public class EditModel(IEmployeeRepository employeeRepository,
       }
       else
       {
-        Employee = _employeeRepository.Add(Employee);
+        Employee = _employeeRepository.Add(Employees, Employee);
       }
+      TempData["Employees"] = JsonConvert.SerializeObject(Employees);
       return RedirectToPage("Index");
     }
 

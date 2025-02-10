@@ -7,10 +7,11 @@ namespace DotNetRazorPages.Pages.Pragimtech;
 public class DetailsModel(IEmployeeRepository employeeRepository) : PageModel
 {
 #pragma warning disable CS9124 // Parameter is captured into the state of the enclosing type and its value is also used to initialize a field, property, or event.
-    private readonly IEmployeeRepository _employeeRepository = employeeRepository;
+  private readonly IEmployeeRepository _employeeRepository = employeeRepository;
 #pragma warning restore CS9124 // Parameter is captured into the state of the enclosing type and its value is also used to initialize a field, property, or event.
 
-    public Employee? Employee { get; set; }
+  public Employee? Employee { get; set; }
+  public required IEnumerable<Employee> Employees { get; set; }
 
   [BindProperty(SupportsGet = true)]
   public string? Message { get; set; }
@@ -20,5 +21,6 @@ public class DetailsModel(IEmployeeRepository employeeRepository) : PageModel
   public void OnGet(int id)
   {
     Employee = employeeRepository.GetEmployee(id);
+
   }
 }
