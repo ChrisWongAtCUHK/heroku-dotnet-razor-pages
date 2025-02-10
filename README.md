@@ -33,6 +33,7 @@
   - [Delete operation in asp.net core razor pages](https://csharp-video-tutorials.blogspot.com/2020/01/delete-operation-in-aspnet-core-razor.html)
   - [Partial views in asp.net core](https://csharp-video-tutorials.blogspot.com/2020/01/partial-views-in-aspnet-core.html)
   - [ASP.NET Core view components](https://csharp-video-tutorials.blogspot.com/2020/01/aspnet-core-view-components.html)
+  - [ASP.NET Core view component parameter example](https://csharp-video-tutorials.blogspot.com/2020/01/pass-parameters-to-view-component-in.html)
 ```
 dotnet new page -n Index -na DotNetRazorPages.Pages.Area -o Pages/Area
 ```
