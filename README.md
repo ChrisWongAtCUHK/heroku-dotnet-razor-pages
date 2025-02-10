@@ -28,6 +28,8 @@
   - [Getting Started with Entity Framework Core](https://www.csharptutorial.net/entity-framework-core-tutorial/getting-started-with-entity-framework-core/)
   - [How to Log SQL Queries in EF Core](https://www.csharptutorial.net/entity-framework-core-tutorial/ef-core-log-sql-query/)
   - [EF Core One-to-many Relationships](https://www.csharptutorial.net/entity-framework-core-tutorial/ef-core-one-to-many-relationship/)
+- [ASP.NET Core Razor Pages Tutorial for Beginners](https://csharp-video-tutorials.blogspot.com/2020/01/aspnet-core-razor-pages-client-side.html#google_vignette)
+  - [ASP.NET Core razor pages client side validation](https://csharp-video-tutorials.blogspot.com/2020/01/aspnet-core-razor-pages-client-side.html)
 ```
 dotnet new page -n Index -na DotNetRazorPages.Pages.Area -o Pages/Area
 ```
