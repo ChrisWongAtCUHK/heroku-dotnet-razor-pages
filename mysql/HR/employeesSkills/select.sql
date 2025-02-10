@@ -5,7 +5,7 @@ SELECT
   e.joinedDate,
   e.salary,
   d.name,
-  GROUP_CONCAT (s.title) AS `skills`
+  GROUP_CONCAT(s.title) AS `skills`
 FROM
   employees e
   INNER JOIN departments d ON d.id = e.departmentId
