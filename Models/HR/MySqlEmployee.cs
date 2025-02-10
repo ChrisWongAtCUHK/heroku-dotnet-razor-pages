@@ -12,6 +12,7 @@ public class MySqlEmployee
   public required DateTime JoinedDate { get; set; }
   [Required]
   public required decimal Salary { get; set; }
-  public required string Department { get; set; } 
+  [Required]
+  public required string DepartmentName { get; set; } 
   public required string Skills { get; set; }
 }

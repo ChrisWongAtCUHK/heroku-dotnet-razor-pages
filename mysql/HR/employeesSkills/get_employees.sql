@@ -2,7 +2,7 @@ DROP PROCEDURE IF EXISTS get_employees;
 
 DELIMITER $$
 $$
-CREATE PROCEDURE get_employees()
+CREATE PROCEDURE get_employees(skip INT, take INT)
 BEGIN
   SELECT
     e.id,
@@ -10,7 +10,7 @@ BEGIN
     e.lastName,
     e.joinedDate,
     e.salary,
-    d.name,
+    d.name AS `departmentName`,
     GROUP_CONCAT(s.title) AS `skills`
   FROM
     employees e

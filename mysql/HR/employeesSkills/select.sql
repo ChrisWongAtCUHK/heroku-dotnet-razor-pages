@@ -4,7 +4,7 @@ SELECT
   e.lastName,
   e.joinedDate,
   e.salary,
-  d.name,
+  d.name AS `DepartmentName`,
   GROUP_CONCAT(s.title) AS `skills`
 FROM
   employees e
