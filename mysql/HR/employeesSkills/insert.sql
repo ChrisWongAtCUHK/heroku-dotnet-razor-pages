@@ -1,5 +1,5 @@
 INSERT INTO
-  employeeSkills (employeeId, skillId)
+  employeesSkills (employeeId, skillId)
 VALUES
   (1, 1),
   (1, 2),
