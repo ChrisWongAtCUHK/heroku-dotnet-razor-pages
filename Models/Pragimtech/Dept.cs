@@ -1,4 +1,4 @@
-namespace DotNetRazorPages.Models;
+namespace DotNetRazorPages.Models.Pragimtech;
 
 public enum Dept
 {
