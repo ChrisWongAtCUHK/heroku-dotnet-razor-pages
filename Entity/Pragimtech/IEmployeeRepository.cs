@@ -9,4 +9,5 @@ public interface IEmployeeRepository
   Employee Add(List<Employee> employees, Employee newEmployee);
   Employee Delete(List<Employee> employees, int id);
   IEnumerable<DeptHeadCount> EmployeeCountByDept();
+   IEnumerable<Employee> Search(string searchTerm);
 }
