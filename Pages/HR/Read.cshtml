@@ -59,8 +59,9 @@
         <th>Joined Date</th>
         <th>Salary</th>
         <th>Department</th>
+        <th>Skills</th>
     </tr>
-    @foreach (Employee employee in Model.employeeList!.Employees)
+    @foreach (MySqlEmployee employee in Model.employeeList!.Employees)
     {
         <tr>
             <td>@employee.Id</td>
@@ -68,7 +69,8 @@
             <td>@employee.LastName</td>
             <td>@employee.JoinedDate</td>
             <td>@employee.Salary</td>
-            <td>@employee.Department!.Name</td>
+            <td>@employee.Department</td>
+            <td>@employee.Skills</td>
         </tr>
     }
 </table>
@@ -102,16 +104,9 @@ page-class-selected --- PageClassSelected *@
             PagingInfo pagingInfo = new PagingInfo();
             employeeList = new EmployeeList()
             {
-                Employees = new List<Employee>(),
+                Employees = [],
                 PagingInfo = pagingInfo
             };
-
-            // get department
-            foreach(Employee employee in employeeList.Employees)
-            {
-                var department = await Department.ReadAsync(_departmentRepository, employee.DepartmentId);
-                employee.Department = department ?? (Department)new object();
-            }
 
             // set the page size as 10 which you can change according to your wish
             int pageSize = 10;
@@ -124,13 +119,11 @@ page-class-selected --- PageClassSelected *@
 
             // method returns Tuple whose value is extracted and provided to the TotalItems of pagingInfo and employee of employeeList
             pagingInfo.TotalItems = resultTuple.Item2;
-            employeeList.Employees = resultTuple.Item1;
-            
-            // get department
-            foreach(Employee employee in employeeList.Employees)
+            List<Employee> employees = resultTuple.Item1;
+            List<MySqlEmployee> mySqlEmployees = [];
+            foreach(Employee employee in employees)
             {
-                var department = await Department.ReadAsync(_departmentRepository, employee.DepartmentId);
-                employee.Department = department ?? (Department)new object();
+                mySqlEmployees.Add((MySqlEmployee)employee);
             }
 
             employeeList.PagingInfo = pagingInfo;

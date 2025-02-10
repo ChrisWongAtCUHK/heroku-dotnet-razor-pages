@@ -15,7 +15,7 @@ public abstract class Repository<T>(DbContext context) : IRepository<T> where T 
         await _context.SaveChangesAsync();
     }
 
-    public async Task<(List<T>, int)> ReadAllFilterAsync(int skip, int take)
+    public virtual async Task<(List<T>, int)> ReadAllFilterAsync(int skip, int take)
     {
         var all = _context.Set<T>();
         // fetching only the records of the current page by the use of Linq Skip and Take methods

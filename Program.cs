@@ -19,7 +19,7 @@ var connectionString = $"server=sql12.freesqldatabase.com;uid={mysqlUsername};pw
 var serverVersion = new MySqlServerVersion(new Version(5, 5, 62));
 
 builder.Services.AddTransient<IRepository<Movie>, MovieRepository<Movie>>(); 
-builder.Services.AddTransient<IRepository<Employee>, EmployeeRepository<Employee>>();
+builder.Services.AddTransient<IRepository<MySqlEmployee>, EmployeeRepository<MySqlEmployee>>();
 builder.Services.AddTransient<IRepository<Department>, DepartmentRepository<Department>>();
 
 builder.Services.AddRazorPages();

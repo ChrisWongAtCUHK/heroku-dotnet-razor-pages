@@ -26,3 +26,4 @@ BEGIN
 END$$
 DELIMITER ;
 -- SHOW CREATE PROCEDURE get_employees
+-- CALL get_employees(0, 10)
