@@ -89,9 +89,9 @@ page-class-selected --- PageClassSelected *@
 @functions {
     public class ReadModel : PageModel
     {
-        private readonly IRepository<Employee> _employeeRepository;
+        private readonly IRepository<MySqlEmployee> _employeeRepository;
         private readonly IRepository<Department> _departmentRepository;
-        public ReadModel(IRepository<Employee> employeeRepository, IRepository<Department> departmentRepository)
+        public ReadModel(IRepository<MySqlEmployee> employeeRepository, IRepository<Department> departmentRepository)
         {
             _employeeRepository = employeeRepository;
             _departmentRepository = departmentRepository;
@@ -119,13 +119,8 @@ page-class-selected --- PageClassSelected *@
 
             // method returns Tuple whose value is extracted and provided to the TotalItems of pagingInfo and employee of employeeList
             pagingInfo.TotalItems = resultTuple.Item2;
-            List<Employee> employees = resultTuple.Item1;
-            List<MySqlEmployee> mySqlEmployees = [];
-            foreach(Employee employee in employees)
-            {
-                mySqlEmployees.Add((MySqlEmployee)employee);
-            }
-
+            List<MySqlEmployee> employees = resultTuple.Item1;
+            employeeList.Employees = employees;
             employeeList.PagingInfo = pagingInfo;
         }
 
