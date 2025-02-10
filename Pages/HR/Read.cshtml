@@ -110,11 +110,7 @@ page-class-selected --- PageClassSelected *@
             foreach(Employee employee in employeeList.Employees)
             {
                 var department = await Department.ReadAsync(_departmentRepository, employee.DepartmentId);
-                employee.Department = department ?? new Department
-                {
-                    Name = string.Empty,
-                    Employees = []
-                };
+                employee.Department = department ?? (Department)new object();
             }
 
             // set the page size as 10 which you can change according to your wish
@@ -134,11 +130,7 @@ page-class-selected --- PageClassSelected *@
             foreach(Employee employee in employeeList.Employees)
             {
                 var department = await Department.ReadAsync(_departmentRepository, employee.DepartmentId);
-                employee.Department = department ?? new Department
-                {
-                    Name = string.Empty,
-                    Employees = []
-                };
+                employee.Department = department ?? (Department)new object();
             }
 
             employeeList.PagingInfo = pagingInfo;
