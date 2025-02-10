@@ -114,8 +114,7 @@ public class EditModel(IEmployeeRepository employeeRepository,
     if (Photo != null)
     {
       string uploadsFolder = Path.Combine(webHostEnvironment.WebRootPath, "images");
-      uniqueFileName = Guid.NewGuid().ToString() + "_" + Photo.FileName;
-      string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+      string filePath = Path.Combine(uploadsFolder, Employee!.PhotoPath ?? "noimage.jpg");
       using (var fileStream = new FileStream(filePath, FileMode.Create))
       {
         Photo.CopyTo(fileStream);
