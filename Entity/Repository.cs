@@ -29,8 +29,7 @@ public abstract class Repository<T>(DbContext context) : IRepository<T> where T 
     }
     public async Task UpdateAsync(T entity)
     {
-        if (entity == null)
-            throw new ArgumentNullException(nameof(entity));
+        ArgumentNullException.ThrowIfNull(entity);
 
         _context.Update(entity);
         await _context.SaveChangesAsync();
@@ -43,7 +42,7 @@ public abstract class Repository<T>(DbContext context) : IRepository<T> where T 
     {
         var entity = await _context.Set<T>().FindAsync(id);
         if (entity == null)
-            throw new ArgumentNullException(nameof(entity));
+            ArgumentNullException.ThrowIfNull(entity);
 
         _context.Set<T>().Remove(entity);
         await _context.SaveChangesAsync();
