@@ -16,7 +16,7 @@ public class EditModel(IEmployeeRepository employeeRepository,
   public required Employee Employee { get; set; }
 
   [BindProperty]
-  public required IFormFile Photo { get; set; }
+  public IFormFile? Photo { get; set; }
 
   [BindProperty]
   public bool Notify { get; set; }
