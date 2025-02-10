@@ -23,7 +23,7 @@ public class EditModel(IEmployeeRepository employeeRepository,
   public bool Notify { get; set; }
 
   public required string Message { get; set; }
-  public required List<Employee> Employees { get; set; }
+  public required List<Employee> Employees { get; set; } = [];
 
   // Make the id parameter optional
   public IActionResult OnGet(int? id)
@@ -32,7 +32,12 @@ public class EditModel(IEmployeeRepository employeeRepository,
     // employee details, else create a new Employee
     if (id.HasValue)
     {
-      Employee = employeeRepository.GetEmployee(id.Value) ?? new Employee()
+      if (TempData["Employees"] != null)
+      {
+        var tempData = TempData["Employees"] ?? string.Empty;
+        Employees = JsonConvert.DeserializeObject<List<Employee>>((string)tempData);
+      }
+      Employee = Employees.FirstOrDefault<Employee>(e => e.Id == id.Value ) ?? new Employee()
       {
         Name = string.Empty,
         Email = string.Empty
@@ -74,8 +79,8 @@ public class EditModel(IEmployeeRepository employeeRepository,
 
       if (TempData["Employees"] != null)
       {
-        var tempDaata = TempData["Employees"] ?? string.Empty;
-        Employees = JsonConvert.DeserializeObject<List<Employee>>((string)tempDaata);
+        var tempData = TempData["Employees"] ?? string.Empty;
+        Employees = JsonConvert.DeserializeObject<List<Employee>>((string)tempData);
       }
       // If Employee ID > 0, call Update() to update existing 
       // employee details else call Add() to add new employee
