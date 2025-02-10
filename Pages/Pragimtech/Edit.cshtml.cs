@@ -8,9 +8,9 @@ public class EditModel(IEmployeeRepository employeeRepository,
                  IWebHostEnvironment webHostEnvironment) : PageModel
 {
 #pragma warning disable CS9124 // Parameter is captured into the state of the enclosing type and its value is also used to initialize a field, property, or event.
-    private readonly IEmployeeRepository _employeeRepository = employeeRepository;
+  private readonly IEmployeeRepository _employeeRepository = employeeRepository;
 #pragma warning restore CS9124 // Parameter is captured into the state of the enclosing type and its value is also used to initialize a field, property, or event.
-    private readonly IWebHostEnvironment webHostEnvironment = webHostEnvironment;
+  private readonly IWebHostEnvironment webHostEnvironment = webHostEnvironment;
 
   [BindProperty]
   public required Employee Employee { get; set; }
