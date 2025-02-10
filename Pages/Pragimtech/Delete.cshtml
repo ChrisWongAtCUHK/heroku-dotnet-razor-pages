@@ -2,12 +2,16 @@
 @model DotNetRazorPages.Pages.Pragimtech.DeleteModel
 @{
   ViewData["Title"] = "Delete";
+  // Pass true using ViewData to tell the partial view
+  // to display View, Edit and Delete buttons
+  ViewData["ShowButtons"] = false;
 }
 
 <h1>Delete Confirmation</h1>
 
 <div class="alert alert-danger">
-  <h5>Are you sure you want to delete employee - @Model.Employee.Name</h5>
+  @*Render partial view passing it the model data and ViewData dictionary*@
+  <partial name="_DisplayEmployeePartial" model="Model.Employee" view-data="ViewData" />
   <form method="post">
     <button type="submit" class="btn btn-danger">Yes</button>
     <a asp-page="/Pragimtech/Index" class="btn btn-primary">No</a>
