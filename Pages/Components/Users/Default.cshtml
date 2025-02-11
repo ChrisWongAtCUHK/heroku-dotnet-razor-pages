@@ -1,0 +1,8 @@
+@model List<DotNetRazorPages.Models.Learnrazorpages.User>
+<h3>Users</h3>
+<ul>
+  @foreach (var user in Model)
+  {
+    <li>@user.Name</li>
+  }
+</ul>

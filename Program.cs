@@ -3,6 +3,7 @@ using DotNetRazorPages.Data;
 using DotNetRazorPages.Data.HR;
 using DotNetRazorPages.Entity;
 using DotNetRazorPages.Entity.HR;
+using DotNetRazorPages.Entity.Learnrazorpages;
 using DotNetRazorPages.Entity.Pragimtech;
 using DotNetRazorPages.Models;
 using DotNetRazorPages.Models.HR;
@@ -23,6 +24,7 @@ builder.Services.AddTransient<IRepository<Movie>, MovieRepository<Movie>>();
 builder.Services.AddTransient<IRepository<MySqlEmployee>, EmployeeRepository<MySqlEmployee>>();
 builder.Services.AddTransient<IRepository<Department>, DepartmentRepository<Department>>();
 builder.Services.AddTransient(typeof(IEmployeeRepository), typeof(MockEmployeeRepository));
+builder.Services.AddTransient<IUserService, UserService>();
 
 builder.Services.AddRazorPages();
 

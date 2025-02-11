@@ -30,10 +30,10 @@
                             <a class="nav-link text-dark" asp-page="/Email/Index">Email</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-page="/Movies/Read" asp-route-id="1" >Movies</a>
+                            <a class="nav-link text-dark" asp-page="/Movies/Read" asp-route-id="1">Movies</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-page="/HR/Read" asp-route-id="1" >HR</a>
+                            <a class="nav-link text-dark" asp-page="/HR/Read" asp-route-id="1">HR</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-page="/Pragimtech/Index">Pragimtech</a>
@@ -43,10 +43,15 @@
             </div>
         </nav>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+    <div class="container body-content">
+        <div class="row">
+            <div class="col-md-9">
+                @RenderBody()
+            </div>
+            <div class="col-md-3">
+                @await Component.InvokeAsync("Users")
+            </div>
+        </div>
     </div>
     <script src="~/lib/jquery/dist/jquery.js"></script>
     @RenderSection("JavaScript", required: false)
