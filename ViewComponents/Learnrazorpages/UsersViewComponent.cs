@@ -1,7 +1,7 @@
 using DotNetRazorPages.Entity.Learnrazorpages;
 using Microsoft.AspNetCore.Mvc;
 
-namespace DotNetRazorPages.ViewComponents;
+namespace DotNetRazorPages.ViewComponents.Learnrazorpages;
 
 public class UsersViewComponent(IUserService userService) : ViewComponent
 {
