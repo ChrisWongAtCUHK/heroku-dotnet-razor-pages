@@ -39,6 +39,7 @@
 - [View Components in Razor Pages](https://www.learnrazorpages.com/razor-pages/view-components)
   - [Elements of a view component](https://www.learnrazorpages.com/razor-pages/view-components#elements-of-a-view-component)
   - [Walkthrough](https://www.learnrazorpages.com/razor-pages/view-components#walkthrough)
+  - [Taghelper and passing parameters](https://www.learnrazorpages.com/razor-pages/view-components#taghelper-and-passing-parameters)
 ```
 dotnet new page -n Index -na DotNetRazorPages.Pages.Area -o Pages/Area
 ```
