@@ -12,6 +12,7 @@ public class IndexModel(IWebHostEnvironment environment, IConfiguration configur
     private readonly IConfiguration _configuration = configuration;
 
     public List<Customer> Customers { get; set; } = [];
+    public  string? FilePath { get; set; }
 
     public void OnGet()
     {
@@ -31,14 +32,15 @@ public class IndexModel(IWebHostEnvironment environment, IConfiguration configur
 
             //Save the uploaded Excel file.
             string fileName = Path.GetFileName(postedFile.FileName);
-            string filePath = Path.Combine(path, fileName);
+            FilePath = Path.Combine(path, fileName);
+            
             string extension = Path.GetExtension(postedFile.FileName);
-            using (FileStream stream = new (filePath, FileMode.Create))
+            using (FileStream stream = new (FilePath, FileMode.Create))
             {
                 postedFile.CopyTo(stream);
             }
 
-            using var doc = SpreadsheetDocument.Open(filePath, false);
+            using var doc = SpreadsheetDocument.Open(FilePath, false);
             var workbookPart = doc.WorkbookPart;
             var sheet = workbookPart!.Workbook.Sheets!.GetFirstChild<Sheet>();
             var worksheet = ((WorksheetPart)workbookPart.GetPartById(sheet!.Id!)).Worksheet;
