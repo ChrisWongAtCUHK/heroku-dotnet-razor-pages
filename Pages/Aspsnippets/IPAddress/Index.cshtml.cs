@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace DotNetRazorPages.Pages.Aspsnippets;
+namespace DotNetRazorPages.Pages.Aspsnippets.IPAddress;
 
 public class IndexModel(IHttpContextAccessor accessor) : PageModel
 {
