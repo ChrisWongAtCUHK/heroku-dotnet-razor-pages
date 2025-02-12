@@ -1,11 +1,10 @@
-using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Spreadsheet;
 using DotNetRazorPages.Models.Aspsnippets;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Data;
 
-namespace DotNetRazorPages.Pages.Aspsnippets;
+namespace DotNetRazorPages.Pages.Aspsnippets.Customers;
 
 public class IndexModel(IWebHostEnvironment environment, IConfiguration configuration) : PageModel
 {

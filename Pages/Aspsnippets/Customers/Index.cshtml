@@ -1,17 +1,7 @@
 ﻿@page
 @using DotNetRazorPages.Models.Aspsnippets
-@model DotNetRazorPages.Pages.Aspsnippets.IndexModel
-@addTagHelper*, Microsoft.AspNetCore.Mvc.TagHelpers
-@{
-	Layout = null;
-}
-<!DOCTYPE html>
-
-<html>
-
-<head>
-	<meta name="viewport" content="width=device-width" />
-	<title>Index</title>
+@model DotNetRazorPages.Pages.Aspsnippets.Customers.IndexModel
+@section Style {
 	<style type="text/css">
 		body {
 			font-family: Arial;
@@ -40,16 +30,14 @@
 			border: 0px solid #ccc;
 		}
 	</style>
-</head>
-
-<body>
-	<form method="post" enctype="multipart/form-data">
-		<input type="file" name="postedFile" />
-		<input type="submit" value="Import" asp-page-handler="Submit" />
-	</form>
+}
+< <form method="post" enctype="multipart/form-data">
+	<input type="file" name="postedFile" />
+	<input type="submit" value="Import" asp-page-handler="Submit" />
+</form>
 	<hr />
-	@if (Model.Customers != null)
-	{
+@if (Model.Customers != null)
+{
 		<table cellpadding="0" cellspacing="0">
 			<tr>
 				<th>Customer Id</th>
@@ -65,7 +53,4 @@
 				</tr>
 			}
 		</table>
-	}
-</body>
-
-</html>
+}
