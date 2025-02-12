@@ -48,7 +48,7 @@
 		<input type="submit" value="Import" asp-page-handler="Submit" />
 	</form>
 	<hr />
-	@if (Model.Customer != null)
+	@if (Model.Customers != null)
 	{
 		<table cellpadding="0" cellspacing="0">
 			<tr>
@@ -56,7 +56,7 @@
 				<th>Name</th>
 				<th>Country</th>
 			</tr>
-			@foreach (Customer customer in Model.Customer)
+			@foreach (Customer customer in Model.Customers)
 			{
 				<tr>
 					<td>@customer.CustomerId</td>
