@@ -40,10 +40,13 @@
                             <a class="nav-link text-dark" asp-page="/Pragimtech/Index">Pragimtech</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-page="/Aspsnippets/Customers/Index">Aspsnippets Customers</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-page="/Aspsnippets/Index">How to get Client IP Address of Visitors Machine</a>
+                            <div class="dropdown">
+                                <a href="#" class="dropdown-toggle nav-link text-dark" data-bs-toggle="dropdown">Aspsnippets</a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item nav-link text-dark" asp-page="/Aspsnippets/Customers/Index">Customers</a>
+                                    <a class="dropdown-item nav-link text-dark" asp-page="/Aspsnippets/Index">How to get Client IP Address of Visitors Machine</a>
+                                </div>
+                            </div>
                         </li>
                     </ul>
                 </div>
@@ -61,6 +64,9 @@
         </div>
     </div>
     <script src="~/lib/jquery/dist/jquery.js"></script>
+    @* This file does not work for dropdown menu  *@
+    @* <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script> *@
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
     @RenderSection("JavaScript", required: false)
 </body>
 
