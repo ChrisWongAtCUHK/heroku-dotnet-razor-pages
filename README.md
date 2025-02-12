@@ -40,6 +40,8 @@
   - [Elements of a view component](https://www.learnrazorpages.com/razor-pages/view-components#elements-of-a-view-component)
   - [Walkthrough](https://www.learnrazorpages.com/razor-pages/view-components#walkthrough)
   - [Taghelper and passing parameters](https://www.learnrazorpages.com/razor-pages/view-components#taghelper-and-passing-parameters)
+- [ASP.Net Core Razor Pages: Upload, Read and Display Excel file data using OLEDB](https://www.aspsnippets.com/Articles/5071/ASPNet-Core-Razor-Pages-Upload-Read-and-Display-Excel-file-data-using-OLEDB/) 
+  - [[DotnetCore] 讀取 excel 套件整理](https://jiaming0708.github.io/2022/08/22/dotnet-core-read-excel-library/)
 ```
 dotnet new page -n Index -na DotNetRazorPages.Pages.Area -o Pages/Area
 ```
