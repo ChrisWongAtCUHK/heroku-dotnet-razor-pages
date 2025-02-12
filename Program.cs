@@ -9,6 +9,7 @@ using DotNetRazorPages.Models;
 using DotNetRazorPages.Models.HR;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 // Write logs to logs.txt
 StreamWriter _writer = new("logs.txt", true);
@@ -81,6 +82,8 @@ builder.Services.AddHttpClient();
 
 builder.Services.AddRouting(options =>
     options.ConstraintMap.Add("even", typeof(EvenConstraint)));
+
+builder.Services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
 var app = builder.Build();
 
