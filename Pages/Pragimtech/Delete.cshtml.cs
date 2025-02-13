@@ -7,11 +7,9 @@ using Microsoft.AspNetCore.Mvc;
 namespace DotNetRazorPages.Pages.Pragimtech;
 public class DeleteModel(IEmployeeRepository employeeRepository) : PageModel
 {
-#pragma warning disable CS9124 // Parameter is captured into the state of the enclosing type and its value is also used to initialize a field, property, or event.
-    private readonly IEmployeeRepository _employeeRepository = employeeRepository;
-#pragma warning restore CS9124 // Parameter is captured into the state of the enclosing type and its value is also used to initialize a field, property, or event.
+  private readonly IEmployeeRepository _employeeRepository = employeeRepository;
 
-    [BindProperty]
+  [BindProperty]
   public required Employee Employee { get; set; }
   public required List<Employee> Employees { get; set; }
 
@@ -26,7 +24,7 @@ public class DeleteModel(IEmployeeRepository employeeRepository) : PageModel
     }
     TempData["Employees"] = JsonConvert.SerializeObject(Employees);
 
-    Employee = employeeRepository.GetEmployee(id) ?? new Employee()
+    Employee = _employeeRepository.GetEmployee(id) ?? new Employee()
     {
       Name = string.Empty,
       Email = string.Empty
@@ -49,7 +47,7 @@ public class DeleteModel(IEmployeeRepository employeeRepository) : PageModel
     }
     TempData["Employees"] = JsonConvert.SerializeObject(Employees);
 
-    Employee employee = employeeRepository.Delete(Employees, Employee.Id);
+    Employee employee = _employeeRepository.Delete(Employees, Employee.Id);
 
     TempData["Employees"] = JsonConvert.SerializeObject(Employees);
 

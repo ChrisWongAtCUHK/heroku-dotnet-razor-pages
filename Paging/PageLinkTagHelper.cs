@@ -44,12 +44,12 @@ public class PageLinkTagHelper : TagHelper
         // The tag helper gets the object of IUrlHelperFactory from the dependency injection feature and 
         // uses it to create the paging anchor tags.
         IUrlHelper urlHelper = _urlHelperFactory.GetUrlHelper(ViewContext ??  new ViewContext());
-        TagBuilder result = new TagBuilder("div");
+        TagBuilder result = new("div");
         string anchorInnerHtml = "";
 
         for (int i = 1; i <= PageModel!.TotalPages; i++)
         {
-            TagBuilder tag = new TagBuilder("a");
+            TagBuilder tag = new("a");
             anchorInnerHtml = AnchorInnerHtml(i, PageModel);
 
             if (anchorInnerHtml == "..")
@@ -72,10 +72,10 @@ public class PageLinkTagHelper : TagHelper
         output.Content.AppendHtml(result.InnerHtml);
     }
 
-    public IDictionary<string, object> AddDictionaryToQueryString(int i)
+    public IDictionary<string, object?> AddDictionaryToQueryString(int i)
     {
         object? routeValues = null;
-        var dict = (routeValues != null) ? new RouteValueDictionary(routeValues) : new RouteValueDictionary();
+        var dict = (routeValues != null) ? new RouteValueDictionary(routeValues) : [];
         dict.Add("id", i);
         foreach (string key in PageOtherValues.Keys)
         {
@@ -83,14 +83,10 @@ public class PageLinkTagHelper : TagHelper
         }
 
         var expandoObject = new ExpandoObject();
-#pragma warning disable CS8619 // Nullability of reference types in value doesn't match target type.
-        var expandoDictionary = (IDictionary<string, object>)expandoObject;
-#pragma warning restore CS8619 // Nullability of reference types in value doesn't match target type.
+        var expandoDictionary = (IDictionary<string, object?>)expandoObject;
         foreach (var keyValuePair in dict)
         {
-#pragma warning disable CS8620 // Argument cannot be used for parameter due to differences in the nullability of reference types.
-            expandoDictionary.Add(keyValuePair);
-#pragma warning restore CS8620 // Argument cannot be used for parameter due to differences in the nullability of reference types.
+            expandoDictionary.Add(keyValuePair!);
         }
 
         return expandoDictionary;
