@@ -43,6 +43,8 @@
 - [ASP.Net Core Razor Pages: Upload, Read and Display Excel file data using OLEDB](https://www.aspsnippets.com/Articles/5071/ASPNet-Core-Razor-Pages-Upload-Read-and-Display-Excel-file-data-using-OLEDB/) 
   - [[DotnetCore] 讀取 excel 套件整理](https://jiaming0708.github.io/2022/08/22/dotnet-core-read-excel-library/)
 - [ASP.Net Core Razor Pages: How to get Client IP Address of Visitors Machine](https://www.aspsnippets.com/Articles/5109/ASPNet-Core-Razor-Pages-How-to-get-Client-IP-Address-of-Visitors-Machine/) 
+- [ASP.Net Core Razor Pages: Generate QRCode with Logo (Image) in Center](https://www.aspsnippets.com/Articles/5057/ASPNet-Core-Razor-Pages-Generate-QRCode-with-Logo-Image-in-Center/#google_vignette)
+  - [QR Code Generator for .NET](https://github.com/manuelbl/QrCodeGenerator)
 ```
 dotnet new page -n Index -na DotNetRazorPages.Pages.Area -o Pages/Area
 ```

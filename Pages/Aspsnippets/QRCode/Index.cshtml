@@ -1,0 +1,20 @@
+﻿@page
+@using DotNetRazorPages.Models.Aspsnippets
+@model DotNetRazorPages.Pages.Aspsnippets.QRCode.IndexModel
+@section Style {
+	<style type="text/css">
+		body {
+			font-family: Arial;
+			font-size: 10pt;
+		}
+	</style>
+}
+<form method="post">
+	<input type="text" name="qrcode" />
+	<input type="submit" value="Generate" asp-page-handler="Generate" />
+</form>
+<br />
+@if (Model.IsQRCodeSvgGenerate)
+{
+	<object type="image/svg+xml" data="~/images/qrcode.svg"> </object>
+}
