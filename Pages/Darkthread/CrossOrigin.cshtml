@@ -1,0 +1,39 @@
+﻿@page
+@model DotNetRazorPages.Pages.Darkthread.CrossOriginModel
+@{
+  Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+
+<body>
+  <div id=u style='font-size:10pt'></div>
+  <script>
+    document.getElementById('u').innerText = location.href;
+  </script>
+  <ul id=m></ul>
+  <script>
+    window.addEventListener('message', function (e) {
+      var origin = document.location.origin;
+      if (!origin.includes('localhost')) {
+        origin = 'https://heroku-dotnet-razor-pages-742922653e59.herokuapp.com';
+      }
+      //務必檢查呼叫來源，只開放特定網域呼叫，以免被惡意利用
+      if (e.origin !== origin)
+        return;
+      //傳送的資料物件
+      let data = e.data;
+      let mmss = data.time.toISOString().substr(14, 5);
+      let li = document.createElement('li');
+      li.innerText = mmss + ' ' + data.msg;
+      document.getElementById('m').appendChild(li);
+      //傳送 postMessage() 的來源網頁物件，可用來於向對方回傳 postMessage()
+      let srcWin = e.source;
+      //回傳資料物件給送訊息的來源
+      srcWin.postMessage('ACK for ' + mmss, e.origin);
+    });
+  </script>
+</body>
+
+</html>
