@@ -22,6 +22,6 @@ public class IndexModel(IWebHostEnvironment environment) : PageModel
         //Save the Byte Array as Image File.
         string filePath = Path.Combine(_environment.WebRootPath, string.Format("Captures/{0}.jpg", fileName));
         System.IO.File.WriteAllBytes(filePath, imageBytes);
-        return new EmptyResult();
+        return Content(filePath);
     }
 }

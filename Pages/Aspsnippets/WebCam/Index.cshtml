@@ -94,7 +94,9 @@
 				xhr.setRequestHeader("XSRF-TOKEN", token);
 			},
 			data: { data: $("#imgCapture")[0].src },
-			success: function (r) { }
+			success: function (r) { 
+				console.log(r);
+			}
 		});
 	});
 </script>
