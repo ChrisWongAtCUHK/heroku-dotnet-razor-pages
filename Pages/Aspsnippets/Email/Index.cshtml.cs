@@ -33,7 +33,7 @@ public class IndexModel(ILogger<IndexModel> logger, IConfiguration configuration
         bool enableSsl = _configuration.GetValue<bool>("Smtp:EnableSsl");
         bool defaultCredentials = _configuration.GetValue<bool>("Smtp:DefaultCredentials");
 
-        using (MailMessage mm = new MailMessage(model.Email, model.To))
+        using (MailMessage mm = new(model.Email, model.To))
         {
             mm.Subject = model.Subject;
             mm.Body = model.Body;
@@ -41,13 +41,13 @@ public class IndexModel(ILogger<IndexModel> logger, IConfiguration configuration
 
             //Attaching file from URL.
             mm.Attachments.Add(new Attachment(stream, Path.GetFileName(apiUrl)));
-            using (SmtpClient smtp = new SmtpClient())
+            using (SmtpClient smtp = new())
             {
                 smtp.Host = host!;
                 smtp.Port = port;
                 smtp.EnableSsl = enableSsl;
                 smtp.UseDefaultCredentials = defaultCredentials;
-                NetworkCredential networkCred = new NetworkCredential(model.Email, model.Password);
+                NetworkCredential networkCred = new(model.Email, model.Password);
                 smtp.Credentials = networkCred;
                 smtp.Send(mm);
             }
