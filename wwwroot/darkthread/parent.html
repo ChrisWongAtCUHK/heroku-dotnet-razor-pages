@@ -1,30 +1,37 @@
 <!DOCTYPE html>
 <html>
+
 <body>
-	<div id=u style='font-size:9pt'></div>
-	<script>
-		document.getElementById('u').innerText = location.href;
-	</script>
-	<div style='padding: 6px'>
-		<button id=b>postMessage()</button>
-		<span id=s></span>
-	</div>
-	<iframe id=f src='./cross-origin.html'></iframe>
-	<script>
-	document.getElementById('b').addEventListener('click', function() {
-		document.getElementById('f').contentWindow.postMessage(
-			//要傳遞的資料，可以是字串也可以是物件
-			{ time: new Date(), msg: 'msg from parent'}, 
-			//指定接受資料的對象，雖然可以用 * 全面開放，但不建議
-			'*');
-	});
-	window.addEventListener('message', function(e) {
-		//務必檢查呼叫來源，只處理來自特定網域的呼叫，以免被惡意利用
-		if (e.origin !== 'http://localhost:5225') 
-			return;
-    console.log(e.origin);
-		document.getElementById('s').innerText = e.data;
-	});
-	</script>
+  <div id=u style='font-size:9pt'></div>
+  <script>
+    document.getElementById('u').innerText = location.href;
+  </script>
+  <div style='padding: 6px'>
+    <button id=b>postMessage()</button>
+    <span id=s></span>
+  </div>
+  <iframe id=f src='./cross-origin.html'></iframe>
+  <script>
+    document.getElementById('b').addEventListener('click', function () {
+      document.getElementById('f').contentWindow.postMessage(
+        //要傳遞的資料，可以是字串也可以是物件
+        { time: new Date(), msg: 'msg from parent' },
+        //指定接受資料的對象，雖然可以用 * 全面開放，但不建議
+        '*');
+    });
+    window.addEventListener('message', function (e) {
+      var origin = document.location.origin;
+      if(!origin.includes('localhost')) {
+        origin = 'https://heroku-dotnet-razor-pages-742922653e59.herokuapp.com';
+      }
+      
+      //務必檢查呼叫來源，只處理來自特定網域的呼叫，以免被惡意利用
+      if (e.origin !== origin)
+        return;
+      console.log(e.origin);
+      document.getElementById('s').innerText = e.data;
+    });
+  </script>
 </body>
+
 </html>
