@@ -45,6 +45,7 @@
 - [ASP.Net Core Razor Pages: How to get Client IP Address of Visitors Machine](https://www.aspsnippets.com/Articles/5109/ASPNet-Core-Razor-Pages-How-to-get-Client-IP-Address-of-Visitors-Machine/) 
 - [ASP.Net Core Razor Pages: Generate QRCode with Logo (Image) in Center](https://www.aspsnippets.com/Articles/5057/ASPNet-Core-Razor-Pages-Generate-QRCode-with-Logo-Image-in-Center/#google_vignette)
   - [QR Code Generator for .NET](https://github.com/manuelbl/QrCodeGenerator)
+  - [ASP.Net Core Razor Pages: Switch between Front and Back camera in WebCam using jQuery](https://www.aspsnippets.com/Articles/4937/ASPNet-Core-Razor-Pages-Switch-between-Front-and-Back-camera-in-WebCam-using-jQuery/)
 - [黑暗執行執](https://blog.darkthread.net/)
   - [前端單兵基本教練 - 使用 postMessage 與 IFrame 跨網站網頁互動](https://blog.darkthread.net/blog/window-postmessage/)
 ```

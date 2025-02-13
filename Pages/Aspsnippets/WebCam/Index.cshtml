@@ -1,0 +1,100 @@
+﻿@page
+@using DotNetRazorPages.Models.Aspsnippets
+@model DotNetRazorPages.Pages.Aspsnippets.WebCam.IndexModel
+@section Style {
+	<style type="text/css">
+		body {
+			font-family: Arial;
+			font-size: 10pt;
+		}
+
+		table {
+			border: 1px solid #ccc;
+			border-collapse: collapse;
+		}
+
+		table th {
+			background-color: #F7F7F7;
+			color: #333;
+			font-weight: bold;
+		}
+
+		table th,
+		table td {
+			padding: 5px;
+			border: 1px solid #ccc;
+		}
+
+		table,
+		table table td {
+			border: 0px solid #ccc;
+		}
+	</style>
+}
+
+@Html.AntiForgeryToken()
+<table border="0" cellpadding="0" cellspacing="0">
+	<tr>
+		<th align="center"><u>Live Camera</u></th>
+		<th align="center"><u>Captured Picture</u></th>
+	</tr>
+	<tr>
+		<td>
+			<div id="webcam"></div>
+		</td>
+		<td><img id="imgCapture" /></td>
+	</tr>
+	<tr>
+		<td align="center">
+			<input type="button" id="btnFrontBack" value="Back" />
+			<input type="button" id="btnCapture" value="Capture" />
+		</td>
+		<td align="center">
+			<input type="button" id="btnUpload" value="Upload" disabled="disabled" />
+		</td>
+	</tr>
+</table>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.26/webcam.js"></script>
+<script type="text/javascript">
+	$(function () {
+		ApplyPlugin();
+		$("#btnCapture").click(function () {
+			Webcam.snap(function (data_uri) {
+				$("#imgCapture")[0].src = data_uri;
+				$("#btnUpload").removeAttr("disabled");
+			});
+		});
+
+		$("#btnFrontBack").click(function () {
+			$('#btnFrontBack').val($('#btnFrontBack').val() == 'Back' ? 'Front' : 'Back');
+			Webcam.reset();
+			ApplyPlugin();
+		});
+	});
+
+	function ApplyPlugin() {
+		var mode = $('#btnFrontBack').val() == 'Back' ? 'user' : 'environment';
+		Webcam.set({
+			width: 320,
+			height: 240,
+			image_format: 'jpeg',
+			jpeg_quality: 90,
+			constraints: { facingMode: mode }
+		});
+		Webcam.attach('#webcam');
+	}
+
+	$("body").on("click", "#btnUpload", function () {
+		var token = $('input:hidden[name="__RequestVerificationToken"]').val();
+		$.ajax({
+			type: "POST",
+			url: "/Aspsnippets/WebCam/Index?handler=SaveCapturedImage",
+			beforeSend: function (xhr) {
+				xhr.setRequestHeader("XSRF-TOKEN", token);
+			},
+			data: { data: $("#imgCapture")[0].src },
+			success: function (r) { }
+		});
+	});
+</script>

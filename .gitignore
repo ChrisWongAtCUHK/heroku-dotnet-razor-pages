@@ -486,3 +486,5 @@ $RECYCLE.BIN/
 # Playwright
 **/screenshots/
 logs.txt
+
+wwwroot/Captures/*.jpg

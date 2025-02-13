@@ -84,7 +84,7 @@ builder.Services.AddRouting(options =>
     options.ConstraintMap.Add("even", typeof(EvenConstraint)));
 
 builder.Services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-
+builder.Services.AddAntiforgery(o => o.HeaderName = "XSRF-TOKEN");
 var app = builder.Build();
 
 app.UseForwardedHeaders();
