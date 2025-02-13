@@ -1,18 +1,28 @@
-using System.Net;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace DotNetRazorPages.Pages.Darkthread;
 
-public class ParentModel : PageModel
+public class ParentModel(IWebHostEnvironment webHostEnvironment) : PageModel
 {
-    public ParentModel()
-    {
-        
-    }
+    private readonly IWebHostEnvironment _webHostEnvironment = webHostEnvironment;
+
+    public string Origin = "";
 
     public void OnGet()
     {
+        if (_webHostEnvironment.IsDevelopment())
+        {
+            Origin = Request.Scheme + "://" + Request.Host.ToString();
+        }
+        else
+        {
+            IConfiguration config = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                .Build();
+
+            Origin = config["Origin"]!;
+        }
     }
 }
 

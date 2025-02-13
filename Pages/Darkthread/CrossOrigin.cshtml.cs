@@ -1,18 +1,28 @@
-using System.Net;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Configuration;
 
 namespace DotNetRazorPages.Pages.Darkthread;
 
-public class CrossOriginModel : PageModel
+public class CrossOriginModel(IWebHostEnvironment webHostEnvironment) : PageModel
 {
-    public CrossOriginModel()
-    {
-        
-    }
+    private readonly IWebHostEnvironment _webHostEnvironment = webHostEnvironment;
+
+    public string Origin = "";
 
     public void OnGet()
     {
+        if (_webHostEnvironment.IsDevelopment())
+        {
+            Origin = Request.Scheme + "://" + Request.Host.ToString();
+        }
+        else
+        {
+            IConfiguration config = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                .Build();
+
+            Origin = config["Origin"]!;
+        }
     }
 }
-

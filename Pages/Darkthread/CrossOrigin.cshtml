@@ -15,10 +15,7 @@
   <ul id=m></ul>
   <script>
     window.addEventListener('message', function (e) {
-      var origin = document.location.origin;
-      if (!origin.includes('localhost')) {
-        origin = 'https://heroku-dotnet-razor-pages-742922653e59.herokuapp.com';
-      }
+      var origin = '@Model.Origin';
       //務必檢查呼叫來源，只開放特定網域呼叫，以免被惡意利用
       if (e.origin !== origin)
         return;
