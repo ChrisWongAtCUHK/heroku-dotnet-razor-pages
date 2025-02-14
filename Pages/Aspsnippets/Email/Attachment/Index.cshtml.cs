@@ -3,19 +3,18 @@ using System.Net.Mail;
 using DotNetRazorPages.Models;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace DotNetRazorPages.Pages.Aspsnippets.Email;
+namespace DotNetRazorPages.Pages.Aspsnippets.Email.Attachment;
 
-public class IndexModel(ILogger<IndexModel> logger, IConfiguration configuration) : PageModel
+public class IndexModel(IConfiguration configuration) : PageModel
 {
-    private readonly ILogger<IndexModel> _logger = logger;
-    public IConfiguration _configuration { get; set; } = configuration;
-    public EmailModel? Model { get; set; }
+    public IConfiguration _configuration = configuration;
+    public EmailModel? EmailModel { get; set; }
 
     public void OnGet()
     {
     }
 
-    public void OnPostSendEmail(EmailModel model)
+    public void OnPostSendEmail(EmailModel emailModel)
     {
         //Setting TLS 1.2 protocol.
 #pragma warning disable SYSLIB0014 // Type or member is obsolete
@@ -33,24 +32,29 @@ public class IndexModel(ILogger<IndexModel> logger, IConfiguration configuration
         bool enableSsl = _configuration.GetValue<bool>("Smtp:EnableSsl");
         bool defaultCredentials = _configuration.GetValue<bool>("Smtp:DefaultCredentials");
 
-        using (MailMessage mm = new(model.Email, model.To))
+        #region MailerSend secret
+        string username = Environment.GetEnvironmentVariable("MAILERSEND_USERNAME") ?? string.Empty;
+        string password = Environment.GetEnvironmentVariable("MAILERSEND_PASSWORD") ?? string.Empty;
+        #endregion
+
+        using (MailMessage mm = new(username, emailModel.To))
         {
-            mm.Subject = model.Subject;
-            mm.Body = model.Body;
+            mm.Subject = emailModel.Subject;
+            mm.Body = emailModel.Body;
             mm.IsBodyHtml = false;
 
             //Attaching file from URL.
-            mm.Attachments.Add(new Attachment(stream, Path.GetFileName(apiUrl)));
-            using (SmtpClient smtp = new())
-            {
-                smtp.Host = host!;
-                smtp.Port = port;
-                smtp.EnableSsl = enableSsl;
-                smtp.UseDefaultCredentials = defaultCredentials;
-                NetworkCredential networkCred = new(model.Email, model.Password);
-                smtp.Credentials = networkCred;
-                smtp.Send(mm);
-            }
+            mm.Attachments.Add(new System.Net.Mail.Attachment(stream, Path.GetFileName(apiUrl)));
+            using SmtpClient smtp = new();
+            smtp.Host = host!;
+            smtp.Port = port;
+            smtp.EnableSsl = enableSsl;
+            smtp.UseDefaultCredentials = defaultCredentials;
+
+
+            NetworkCredential networkCred = new(username, password);
+            smtp.Credentials = networkCred;
+            smtp.Send(mm);
         }
         ViewData["Message"] = "Email sent.";
     }

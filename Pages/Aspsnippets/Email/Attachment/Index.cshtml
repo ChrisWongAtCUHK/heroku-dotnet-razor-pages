@@ -1,39 +1,25 @@
 ﻿@page
-@model DotNetRazorPages.Pages.Aspsnippets.Email.IndexModel
+@model DotNetRazorPages.Pages.Aspsnippets.Email.Attachment.IndexModel
 
 <form method="post" enctype="multipart/form-data">
   <table>
     <tr>
       <td style="width: 80px">To:</td>
-      <td><input type="text" asp-for="Model!.To" /></td>
+      <td><input type="text" asp-for="EmailModel!.To" /></td>
     </tr>
     <tr>
       <td>&nbsp;</td>
     </tr>
     <tr>
       <td>Subject:</td>
-      <td><input type="text" asp-for="Model!.Subject" /></td>
+      <td><input type="text" asp-for="EmailModel!.Subject" /></td>
     </tr>
     <tr>
       <td>&nbsp;</td>
     </tr>
     <tr>
       <td valign="top">Body:</td>
-      <td><textarea cols="20" rows="3" asp-for="Model!.Body"></textarea></td>
-    </tr>
-    <tr>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td>MailerSend Email:</td>
-      <td><input type="text" asp-for="Model!.Email" /></td>
-    </tr>
-    <tr>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td>MailerSend Password:</td>
-      <td><input type="password" asp-for="Model!.Password" /></td>
+      <td><textarea cols="20" rows="3" asp-for="EmailModel!.Body"></textarea></td>
     </tr>
     <tr>
       <td>&nbsp;</td>

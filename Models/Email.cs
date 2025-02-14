@@ -5,6 +5,4 @@ public class EmailModel
     public required string To { get; set; }
     public required string Subject { get; set; }
     public required string Body { get; set; }
-    public required string Email { get; set; }
-    public required string Password { get; set; }
 }
