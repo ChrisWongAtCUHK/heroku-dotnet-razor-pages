@@ -1,5 +1,4 @@
 using System.Net;
-using System.Net.Mail;
 using DotNetRazorPages.Models;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -26,36 +25,11 @@ public class IndexModel(IConfiguration configuration) : PageModel
 
         //Read the file to Stream from URL.
         using Stream stream = client.GetStreamAsync(apiUrl).Result;
-        //Read SMTP section from AppSettings.json.
-        string? host = _configuration.GetValue<string>("Smtp:Server");
-        int port = _configuration.GetValue<int>("Smtp:Port");
-        bool enableSsl = _configuration.GetValue<bool>("Smtp:EnableSsl");
-        bool defaultCredentials = _configuration.GetValue<bool>("Smtp:DefaultCredentials");
 
-        #region MailerSend secret
-        string username = Environment.GetEnvironmentVariable("MAILERSEND_USERNAME") ?? string.Empty;
-        string password = Environment.GetEnvironmentVariable("MAILERSEND_PASSWORD") ?? string.Empty;
-        #endregion
+        emailModel.IsBodyHtml = false;
+        emailModel.Attachment = new System.Net.Mail.Attachment(stream, Path.GetFileName(apiUrl));
+        emailModel.SendEmail(_configuration);
 
-        using (MailMessage mm = new(username, emailModel.To))
-        {
-            mm.Subject = emailModel.Subject;
-            mm.Body = emailModel.Body;
-            mm.IsBodyHtml = false;
-
-            //Attaching file from URL.
-            mm.Attachments.Add(new System.Net.Mail.Attachment(stream, Path.GetFileName(apiUrl)));
-            using SmtpClient smtp = new();
-            smtp.Host = host!;
-            smtp.Port = port;
-            smtp.EnableSsl = enableSsl;
-            smtp.UseDefaultCredentials = defaultCredentials;
-
-
-            NetworkCredential networkCred = new(username, password);
-            smtp.Credentials = networkCred;
-            smtp.Send(mm);
-        }
-        ViewData["Message"] = "Email sent.";
+         ViewData["Message"] = "Email sent.";
     }
 }
