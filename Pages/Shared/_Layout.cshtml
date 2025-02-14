@@ -47,51 +47,33 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-page="/Pragimtech/Index">Pragimtech</a>
                         </li>
-                        <li class="nav-item">
-                            <div class="dropdown">
-                                <a href="#" class="dropdown-toggle nav-link text-dark" id="navbarDropdown" role="button"
-                                    aria-expanded="false" data-bs-toggle="dropdown">Aspsnippets</a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item nav-link text-dark"
-                                        asp-page="/Aspsnippets/Customers/Index">Customers</a>
-                                    <a class="dropdown-item nav-link text-dark"
-                                        asp-page="/Aspsnippets/IPAddress/Index">How to get Client IP Address of Visitors
-                                        Machine</a>
-                                    <a class="nav-link text-dark"
-                                        asp-page="/Aspsnippets/Email/Attachment/Index">Email</a>
-                                    <a class="nav-link text-dark" asp-page="/Aspsnippets/QRCode/Index">QRCode</a>
-                                    <a class="nav-link text-dark" asp-page="/Aspsnippets/WebCam/Index">ASP.Net Core
-                                        Razor Pages: Switch between Front and Back camera in WebCam using jQuery</a>
-                                </div>
-                            </div>
-                        </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
                                 Aspsnippets
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item nav-link text-dark"
+                                        asp-page="/Aspsnippets/Customers/Index">Customers</a></li>
+                                <li><a class="dropdown-item nav-link text-dark"
+                                        asp-page="/Aspsnippets/IPAddress/Index">How to get Client IP Address of Visitors
+                                        Machine</a></li>
                                 <li>
                                     <a class="dropdown-item" href="#">Email</a>
                                     <ul class="dropdown-menu dropdown-submenu">
                                         <li>
                                             <a class="nav-link text-dark"
-                                                asp-page="/Aspsnippets/Email/Attachment/Index">Email</a>
+                                                asp-page="/Aspsnippets/Email/Attachment/Index">Attachment</a>
                                         </li>
-                                        <li>
-                                            <a class="dropdown-item" href="#">Submenu Submenu item 2</a>
-
                                     </ul>
                                 </li>
-
-
-                                <li><a class="dropdown-item" href="#">Software Development</a></li>
-                                <li><a class="dropdown-item" href="#">Networking and Cloud</a></li>
-                                <li><a class="dropdown-item" href="#">Cyber Defence and offensive</a></li>
                                 <li>
-                                    <hr class="dropdown-divider">
+                                    <a class="nav-link text-dark" asp-page="/Aspsnippets/QRCode/Index">QRCode</a>
                                 </li>
-                                <li><a class="dropdown-item" href="#">More</a></li>
+                                <li>
+                                    <a class="nav-link text-dark" asp-page="/Aspsnippets/WebCam/Index">ASP.Net Core
+                                        Razor Pages: Switch between Front and Back camera in WebCam using jQuery</a>
+                                </li>
                             </ul>
                         </li>
                     </ul>
