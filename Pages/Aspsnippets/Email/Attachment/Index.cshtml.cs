@@ -30,6 +30,6 @@ public class IndexModel(IConfiguration configuration) : PageModel
         emailModel.Attachment = new System.Net.Mail.Attachment(stream, Path.GetFileName(apiUrl));
         emailModel.SendEmail(_configuration);
 
-         ViewData["Message"] = "Email sent.";
+         ViewData["Message"] = "Email sent with attachment.";
     }
 }

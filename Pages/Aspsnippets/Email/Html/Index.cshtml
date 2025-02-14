@@ -1,0 +1,26 @@
+﻿@page
+@model DotNetRazorPages.Pages.Aspsnippets.Email.Html.IndexModel
+
+<form method="post" enctype="multipart/form-data">
+  <table>
+    <tr>
+      <td style="width: 80px">To:</td>
+      <td><input type="text" asp-for="EmailModel!.To" /></td>
+    </tr>
+    <tr>
+      <td>Subject:</td>
+      <td><input type="text" asp-for="EmailModel!.Subject" /></td>
+    </tr>
+    <tr>
+      <td><input type="submit" value="Send" asp-page-handler="SendEmail" /></td>
+    </tr>
+  </table>
+</form>
+@if (ViewData["Message"] != null)
+{
+  <script type="text/javascript">
+    window.onload = function () {
+      alert("@ViewData["Message"]");
+    };
+  </script>
+}

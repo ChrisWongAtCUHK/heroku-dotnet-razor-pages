@@ -46,6 +46,7 @@
 - [ASP.Net Core Razor Pages: Generate QRCode with Logo (Image) in Center](https://www.aspsnippets.com/Articles/5057/ASPNet-Core-Razor-Pages-Generate-QRCode-with-Logo-Image-in-Center/#google_vignette)
   - [QR Code Generator for .NET](https://github.com/manuelbl/QrCodeGenerator)
   - [ASP.Net Core Razor Pages: Switch between Front and Back camera in WebCam using jQuery](https://www.aspsnippets.com/Articles/4937/ASPNet-Core-Razor-Pages-Switch-between-Front-and-Back-camera-in-WebCam-using-jQuery/)
+  - [ASP.Net Core Razor Pages: Send Email with HTML Templates using MailKit](https://www.aspsnippets.com/Articles/4251/ASPNet-Core-Razor-Pages-Send-Email-with-HTML-Templates-using-MailKit/)
 - [黑暗執行執](https://blog.darkthread.net/)
   - [前端單兵基本教練 - 使用 postMessage 與 IFrame 跨網站網頁互動](https://blog.darkthread.net/blog/window-postmessage/)
 - [how to add a sub menu to a drop down menu item in bootstrap 5?](https://stackoverflow.com/questions/72895270/how-to-add-a-sub-menu-to-a-drop-down-menu-item-in-bootstrap-5) 
