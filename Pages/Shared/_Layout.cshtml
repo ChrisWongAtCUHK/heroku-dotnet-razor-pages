@@ -1,103 +1,56 @@
 ﻿<!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-    <title>RP Sample</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - DotNetRazorPages</title>
+    <script type="importmap"></script>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/DotNetRazorPages.styles.css" asp-append-version="true" />
     @RenderSection("Style", required: false)
 </head>
-
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">Heroku .Net 9 Razor Pages</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
-                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <a class="navbar-brand" asp-area="" asp-page="/Index">DotNetRazorPages</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <div class="dropdown">
-                                <a href="#" class="dropdown-toggle nav-link text-dark"
-                                    data-bs-toggle="dropdown">黑暗執行緒</a>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item nav-link text-dark" asp-page="/Darkthread/Parent">前端單兵基本教練 -
-                                        使用 postMessage 與 IFrame 跨網站網頁互動</a>
-                                </div>
-                            </div>
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-page="/Index">Home</a>
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-page="/Customers/Index">Customers</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-page="/Download/Index">Download</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-page="/Movies/Read" asp-route-id="1">Movies</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-page="/HR/Read" asp-route-id="1">HR</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-page="/Pragimtech/Index">Pragimtech</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                Aspsnippets
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item nav-link text-dark"
-                                        asp-page="/Aspsnippets/Customers/Index">Customers</a></li>
-                                <li><a class="dropdown-item nav-link text-dark"
-                                        asp-page="/Aspsnippets/IPAddress/Index">How to get Client IP Address of Visitors
-                                        Machine</a></li>
-                                <li>
-                                    <a class="dropdown-item" href="#">Email</a>
-                                    <ul class="dropdown-menu dropdown-submenu">
-                                        <li>
-                                            <a class="nav-link text-dark"
-                                                asp-page="/Aspsnippets/Email/Attachment/Index">Attachment</a>
-                                        </li>
-                                        <li>
-                                            <a class="nav-link text-dark"
-                                                asp-page="/Aspsnippets/Email/Html/Index">HTML Body</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a class="nav-link text-dark" asp-page="/Aspsnippets/QRCode/Index">QRCode</a>
-                                </li>
-                                <li>
-                                    <a class="nav-link text-dark" asp-page="/Aspsnippets/WebCam/Index">ASP.Net Core
-                                        Razor Pages: Switch between Front and Back camera in WebCam using jQuery</a>
-                                </li>
-                            </ul>
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Customers/Index">Customers</a>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
-    <div class="container body-content">
-        <div class="row">
-            <div class="col-md-9">
-                @RenderBody()
-            </div>
-            <div class="col-md-3">
-                <vc:user id="new Random().Next(1, 10)"></vc:user>
-            </div>
-        </div>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
     </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2025 - RazorPagesMovie - <a asp-area="" asp-page="/Privacy">Privacy</a>
+        </div>
+    </footer>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    @RenderSection("JavaScript", required: false)
-</body>
+    <script src="~/js/site.js" asp-append-version="true"></script>
 
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
 </html>
