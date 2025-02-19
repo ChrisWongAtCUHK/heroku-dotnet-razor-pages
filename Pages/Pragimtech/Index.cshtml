@@ -32,3 +32,17 @@
     <partial name="_DisplayEmployeePartial" model="employee" view-data="ViewData" />
   }
 </div>
+
+@section Scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+          $('.card-body').each(function() {
+            let $imageThumbnail = $(this).find('.imageThumbnail');
+            let width =  $(this).width();
+            if($imageThumbnail.width() > width) {
+              $imageThumbnail.width(width)
+            }
+          });
+        });
+    </script>
+}
