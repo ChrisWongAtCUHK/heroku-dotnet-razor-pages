@@ -67,3 +67,6 @@ pytest playwright/Customers/tests.py --tracing on --headed --slowmo 1000
 ```
 playwright show-trace test-results/playwright-customers-tests-py-test-example-chromium/trace.zip
 ```
+
+# Bootstrap multi-level dropdown menus
+https://bootstrap-menu.com/detail-multilevel.html
