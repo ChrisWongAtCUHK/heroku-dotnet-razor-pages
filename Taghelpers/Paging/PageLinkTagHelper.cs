@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using System.Dynamic;
 
-namespace DotNetRazorPages.Paging;
+namespace DotNetRazorPages.Taghelpers.Paging;
 
 [HtmlTargetElement("div", Attributes = "page-model")]
 public class PageLinkTagHelper : TagHelper

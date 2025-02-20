@@ -1,4 +1,4 @@
-﻿namespace DotNetRazorPages.Paging;
+﻿namespace DotNetRazorPages.Taghelpers.Paging;
 public class PagingInfo
 {
     public int TotalItems { get; set; }

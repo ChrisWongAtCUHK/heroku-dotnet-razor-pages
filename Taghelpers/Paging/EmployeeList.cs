@@ -1,6 +1,6 @@
 ﻿using DotNetRazorPages.Models.HR;
 
-namespace DotNetRazorPages.Paging;
+namespace DotNetRazorPages.Taghelpers.Paging;
 public class EmployeeList
 {
     public required IEnumerable<MySqlEmployee> Employees { get; set; }

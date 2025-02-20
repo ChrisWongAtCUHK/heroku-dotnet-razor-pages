@@ -1,6 +1,6 @@
 ﻿using DotNetRazorPages.Models;
 
-namespace DotNetRazorPages.Paging;
+namespace DotNetRazorPages.Taghelpers.Paging;
 public class MovieList
 {
     public required IEnumerable<Movie> Movies { get; set; }
