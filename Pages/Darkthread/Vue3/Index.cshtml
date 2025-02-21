@@ -1,0 +1,48 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+@section PreScripts {
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue3-sfc-loader"></script>
+}
+
+<div id="app"></div>
+
+<script>
+    const options = {
+        moduleCache: {
+            vue: Vue,
+        },
+        getFile(url) {
+            return fetch(url).then(resp =>
+                resp.ok ? resp.text() : Promise.reject(resp)
+            );
+        },
+        addStyle(styleStr) {
+            const style = document.createElement("style");
+            style.textContent = styleStr;
+            const ref = document.head.getElementsByTagName("style")[0] || null;
+            document.head.insertBefore(style, ref);
+        },
+        log(type, ...args) {
+            console.log(type, ...args);
+        },
+    };
+
+    const { loadModule, version } = window["vue3-sfc-loader"];
+
+    const app = Vue.createApp({
+        components: {
+            "drk-timer": Vue.defineAsyncComponent(() =>
+                loadModule("./timer.vue", options)
+            ),
+        },
+        template: `<drk-timer secs="20"></drk-timer>
+        <drk-timer></drk-timer>`,
+    });
+
+    app.mount("#app");
+
+</script>

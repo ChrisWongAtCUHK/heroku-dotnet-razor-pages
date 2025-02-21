@@ -49,6 +49,8 @@
   - [ASP.Net Core Razor Pages: Send Email with HTML Templates using MailKit](https://www.aspsnippets.com/Articles/4251/ASPNet-Core-Razor-Pages-Send-Email-with-HTML-Templates-using-MailKit/)
 - [黑暗執行執](https://blog.darkthread.net/)
   - [前端單兵基本教練 - 使用 postMessage 與 IFrame 跨網站網頁互動](https://blog.darkthread.net/blog/window-postmessage/)
+  - [輕前端筆記 - 使用 Vue SFC (.vue 元件)](https://blog.darkthread.net/blog/vue3-sfc-loader/)
+    - [TimerVueSfcDemo](https://github.com/ChrisWongAtCUHK/TimerVueSfcDemo)
 - [how to add a sub menu to a drop down menu item in bootstrap 5?](https://stackoverflow.com/questions/72895270/how-to-add-a-sub-menu-to-a-drop-down-menu-item-in-bootstrap-5) 
 ```
 dotnet new page -n Index -na DotNetRazorPages.Pages.Area -o Pages/Area

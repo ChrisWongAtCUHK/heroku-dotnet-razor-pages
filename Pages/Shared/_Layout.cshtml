@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/DotNetRazorPages.styles.css" asp-append-version="true" />
     @RenderSection("Style", required: false)
+    @RenderSection("PreScripts", required: false)
 </head>
 
 <body>
@@ -29,6 +30,8 @@
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" asp-page="/Darkthread/Parent">前端單兵基本教練 - 使用 postMessage 與
                                         IFrame 跨網站網頁互動 </a>
+                                </li>
+                                <li><a class="dropdown-item" asp-page="/Darkthread/Vue3/Index">Vue3 Timer</a>
                                 </li>
                             </ul>
                         </li>
