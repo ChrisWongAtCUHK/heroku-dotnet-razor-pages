@@ -1,7 +1,7 @@
 @page
 @model DotNetRazorPages.Pages.Customers.IndexModel
 @addTagHelper*, Microsoft.AspNetCore.Mvc.TagHelpers
-<h1>Contacts home page</h1>
+<h1 class="bg-info text-white">Contacts home page</h1>
 <form method="post">
     <table id="Grid" class="table">
         <thead>
@@ -21,10 +21,10 @@
                         <td>@contact.Name</td>
                         <td>
                             <!-- <snippet_Edit> -->
-                            <a asp-page="./Edit" asp-route-id="@contact.Id">Edit</a> |
+                            <a asp-page="./Edit" asp-route-id="@contact.Id" class="btn btn-sm btn-primary">Edit</a> |
                             <!-- </snippet_Edit> -->
                             <!-- <snippet_Delete> -->
-                            <button type="submit" asp-page-handler="delete" asp-route-id="@contact.Id">delete</button>
+                            <button type="submit" asp-page-handler="delete" asp-route-id="@contact.Id" class="btn btn-sm btn-danger">delete</button>
                             <!-- </snippet_Delete> -->
                         </td>
                     </tr>
@@ -32,9 +32,10 @@
             }
         </tbody>
     </table>
-    <a asp-page="Create">Create New</a>
+    <a asp-page="Create" class="btn btn-secondary">Create New</a>
 </form>
-<input type="button" id="btnExport" value="Export to Image" />
+<div>&nbsp;</div>
+<input type="button" id="btnExport" value="Export to Image" class="btn btn-info"/>
 @section Scripts {
     <script type="text/javascript"
         src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>

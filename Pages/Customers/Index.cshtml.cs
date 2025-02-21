@@ -5,13 +5,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DotNetRazorPages.Pages.Customers;
 
-public class IndexModel : PageModel
+public class IndexModel(Data.CustomerDbContext context) : PageModel
 {
-    private readonly Data.CustomerDbContext _context;
-    public IndexModel(Data.CustomerDbContext context)
-    {
-        _context = context;
-    }
+    private readonly Data.CustomerDbContext _context = context;
 
     public IList<Customer>? Customers { get; set; }
 
