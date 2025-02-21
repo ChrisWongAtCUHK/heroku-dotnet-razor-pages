@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Configuration;
 
-namespace DotNetRazorPages.Pages.Darkthread;
+namespace DotNetRazorPages.Pages.Darkthread.Cors;
 
 public class CrossOriginModel(IWebHostEnvironment webHostEnvironment) : PageModel
 {

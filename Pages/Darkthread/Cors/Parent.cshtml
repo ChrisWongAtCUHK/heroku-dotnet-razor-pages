@@ -1,14 +1,14 @@
 ﻿@page
-@model DotNetRazorPages.Pages.Darkthread.ParentModel
+@model ParentModel
 
 <script>
   document.getElementById('u').innerText = location.href;
 </script>
 <div style='padding: 6px'>
-  <button id=b>postMessage()</button>
+  <button id=b class="btn btn-sm btn-primary">postMessage()</button>
   <span id=s></span>
 </div>
-<iframe id=f src='/Darkthread/CrossOrigin'></iframe>
+<iframe id=f src='/Darkthread/Cors/CrossOrigin'></iframe>
 <script>
   document.getElementById('b').addEventListener('click', function () {
     document.getElementById('f').contentWindow.postMessage(

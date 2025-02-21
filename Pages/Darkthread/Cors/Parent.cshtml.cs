@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace DotNetRazorPages.Pages.Darkthread;
+namespace DotNetRazorPages.Pages.Darkthread.Cors;
 
 public class ParentModel(IWebHostEnvironment webHostEnvironment) : PageModel
 {
