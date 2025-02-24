@@ -23,11 +23,6 @@
     <input type="text" asp-for="movie!.Name" class="form-control" />
     <span asp-validation-for="movie!.Name" class="text-danger"></span>
   </div>
-  <div class="form-group">
-    <label asp-for="movie!.Actors"></label>
-    <input type="text" asp-for="movie!.Actors" class="form-control" />
-    <span asp-validation-for="movie!.Actors" class="text-danger"></span>
-  </div>
   <button type="submit" class="btn btn-primary">Update</button>
 </form>
 
@@ -55,8 +50,7 @@
       {
         await _repository.UpdateAsync(movie ?? new Movie()
         {
-          Name = "",
-          Actors = ""
+          Name = ""
         });
 
         return RedirectToPage("Read", new { id = 1 });
