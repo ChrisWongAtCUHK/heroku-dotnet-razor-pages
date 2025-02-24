@@ -10,4 +10,6 @@ public class Movie
 
     [Required]
     public required string Name { get; set; }
+
+    public string? Actors { get; set; }
 }
