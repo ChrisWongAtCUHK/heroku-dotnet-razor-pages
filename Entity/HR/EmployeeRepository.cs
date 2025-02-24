@@ -16,13 +16,15 @@ public class EmployeeRepository<T>(HRDbContext context) : Repository<T>(context)
             employees = [.. set.FromSqlRaw<T>("CALL get_employees({0}, {1})", skip, take)];
 
             // make sure get_total_employees_count exits
-            total = set.FromSqlRaw<T>(@"SELECT
-    DISTINCT e.id
-  FROM
-      employees e
-  INNER JOIN departments d ON d.id = e.departmentId
-  LEFT JOIN employeesSkills es ON es.employeeId = e.id
-  LEFT JOIN skills s ON s.id = es.skillId").Count(); 
+            total = set.FromSqlRaw<T>("""
+                SELECT
+                    DISTINCT e.id
+                FROM
+                    employees e
+                INNER JOIN departments d ON d.id = e.departmentId
+                LEFT JOIN employeesSkills es ON es.employeeId = e.id
+                LEFT JOIN skills s ON s.id = es.skillId
+            """).Count(); 
         });
 
         // the records along with the count of all the records in a Tuple.
