@@ -10,7 +10,7 @@ BEGIN
 	DECLARE str VARCHAR(1000);
 	DECLARE query varchar(65535);
 
- 	-- INSERT INTO movies (name) VALUES (movieName);
+ 	INSERT INTO movies (name) VALUES (movieName);
 
  	SET delimiter = ';';
 	SET remainder = actors;
@@ -28,7 +28,7 @@ BEGIN
 			BEGIN
 				SET @count = (SELECT COUNT(*) FROM actors WHERE name = str);
 				IF @count = 0 THEN
-					SET query = CONCAT(query, '(\'', str, '\'), ');
+					SET query = CONCAT(query, '(\'', str, '\'),');
 				END IF;
 			END;
 		END IF;
@@ -36,9 +36,11 @@ BEGIN
 		SET remainder = SUBSTRING(remainder, pos + 1);
 	END WHILE;
 	
-	SET query = LEFT(query, CHAR_LENGTH(query) - 1);
-	SELECT query;
+	SET @sql = LEFT(query, CHAR_LENGTH(query) - 1);
+	PREPARE stmt FROM @sql;  
+	EXECUTE stmt;  
+	DEALLOCATE PREPARE stmt;
 END$$
 DELIMITER ;
 -- SHOW CREATE PROCEDURE insert_movie
--- CALL insert_movie('Test movie', 'Actor 1; Actor 2; Actor 3')
+-- CALL insert_movie('Test movie', 'Actor 1; George Buza; Actor 3')
