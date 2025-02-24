@@ -23,13 +23,20 @@ BEGIN
 		ELSE
 			SET str = LEFT(remainder, pos - 1);
 		END IF;
-		IF TRIM(str) != '' THEN
-			SET query = CONCAT(query, '(', str, '), ');
+		SET str = TRIM(str);
+		IF  str != '' THEN
+			BEGIN
+				SET @count = (SELECT COUNT(*) FROM actors WHERE name = str);
+				IF @count = 0 THEN
+					SET query = CONCAT(query, '(\'', str, '\'), ');
+				END IF;
+			END;
 		END IF;
 		
 		SET remainder = SUBSTRING(remainder, pos + 1);
 	END WHILE;
-		
+	
+	SET query = LEFT(query, CHAR_LENGTH(query) - 1);
 	SELECT query;
 END$$
 DELIMITER ;
