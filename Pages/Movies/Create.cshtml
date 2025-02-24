@@ -3,6 +3,7 @@
 @using Microsoft.AspNetCore.Mvc.RazorPages;
 @using DotNetRazorPages.Entity;
 @using Models;
+@using System.Text.RegularExpressions
 
 @{
     ViewData["Title"] = "Create a Movie";
@@ -66,8 +67,16 @@
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostAsync(List<string> actors)
         {
+            var values = Request.Form.Where(f => 
+            {
+                // Instantiate the regular expression object.
+                Regex r = new Regex(@"\[\d+\].Name", RegexOptions.IgnoreCase);
+                return r.Match(f.Key).Success;
+            }).ToDictionary().Values;
+            
+            movie!.Actors = string.Join(",", values);
             if (ModelState.IsValid)
             {
                 await _repository.CreateAsync(movie ?? new Movie()
