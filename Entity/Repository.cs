@@ -7,7 +7,7 @@ public abstract class Repository<T>(DbContext context) : IRepository<T> where T 
 {
     private readonly DbContext _context = context;
 
-    public async Task CreateAsync(T entity)
+    public virtual async Task CreateAsync(T entity)
     {
         ArgumentNullException.ThrowIfNull(entity);
 

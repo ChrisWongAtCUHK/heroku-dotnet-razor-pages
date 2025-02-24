@@ -1,10 +1,24 @@
 ﻿using DotNetRazorPages.Data;
+using DotNetRazorPages.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
 
 namespace DotNetRazorPages.Entity;
 
 public class MovieRepository<T>(MovieDbContext context) : Repository<T>(context) where T : class
 {
+  public override async Task CreateAsync(T entity)
+    {
+        var set = context.Set<T>();
+
+        Movie? movie = entity as Movie;
+        await Task.Run(() =>
+        {
+          // make sure insert_movie exists
+          set.FromSqlRaw<T>("CALL insert_movie({0})", movie!.Name);
+        });
+    }
+
   public override async Task<T?> ReadAsync(int id)
   {
     var set = context.Set<T>();
