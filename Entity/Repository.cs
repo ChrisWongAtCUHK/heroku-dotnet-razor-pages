@@ -34,7 +34,7 @@ public abstract class Repository<T>(DbContext context) : IRepository<T> where T 
         _context.Update(entity);
         await _context.SaveChangesAsync();
     }
-    public async Task<T?> ReadAsync(int id)
+    public virtual async Task<T?> ReadAsync(int id)
     {
         return await _context.Set<T>().FindAsync(id);
     }

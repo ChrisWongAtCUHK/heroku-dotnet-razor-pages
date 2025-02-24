@@ -1,8 +1,8 @@
-DROP PROCEDURE IF EXISTS get_movies;
+DROP PROCEDURE IF EXISTS get_movie;
 
 DELIMITER $$
 $$
-CREATE PROCEDURE get_movies(skip INT, take INT)
+CREATE PROCEDURE get_movie(findId INT)
 BEGIN
   SELECT
     m.id,
@@ -12,13 +12,10 @@ BEGIN
     movies m
     LEFT JOIN movieActors ma ON ma.movieId = m.id
     LEFT JOIN actors a ON a.id = ma.actorId
+   WHERE m.id = findId
   GROUP BY
-    m.id
-  LIMIT
-    take
-  OFFSET
-    skip;
+    m.id;
 END$$
 DELIMITER ;
--- SHOW CREATE PROCEDURE get_movies
--- CALL get_movies(0, 10)
+-- SHOW CREATE PROCEDURE get_movie
+-- CALL get_movie(1)
