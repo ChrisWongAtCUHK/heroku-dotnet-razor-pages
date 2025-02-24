@@ -34,8 +34,8 @@ public class MovieRepository<T>(MovieDbContext context) : Repository<T>(context)
   GROUP_CONCAT(a.name) AS `actors`
 FROM
   movies m
-  INNER JOIN movieActors ma ON ma.movieId = m.id
-  INNER JOIN actors a ON a.id = ma.actorId
+  LEFT JOIN movieActors ma ON ma.movieId = m.id
+  LEFT JOIN actors a ON a.id = ma.actorId
 GROUP BY
   m.id").Count();
     });
