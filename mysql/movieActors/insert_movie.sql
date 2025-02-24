@@ -12,7 +12,7 @@ BEGIN
 
  	-- INSERT INTO movies (name) VALUES (movieName);
 
- 	SET delimiter = ',';
+ 	SET delimiter = ';';
 	SET remainder = actors;
 	SET query = 'INSERT INTO actors (name) VALUES ';  
 	
@@ -41,4 +41,4 @@ BEGIN
 END$$
 DELIMITER ;
 -- SHOW CREATE PROCEDURE insert_movie
--- CALL insert_movie('Test movie', 'Actor 1, Actor 2, Actor 3')
+-- CALL insert_movie('Test movie', 'Actor 1; Actor 2; Actor 3')
