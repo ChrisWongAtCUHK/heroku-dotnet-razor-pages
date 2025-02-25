@@ -12,6 +12,7 @@ BEGIN
 	DECLARE new_actor_count INT DEFAULT 0;
 	DECLARE actor_insert_query varchar(65535);
 	DECLARE actor_select_query varchar(65535);
+	DECLARE movie_actor_count INT DEFAULT 0;
 	DECLARE movie_actor_query varchar(65535);
 	DECLARE done INT DEFAULT FALSE;
 	DECLARE actor_id INT;
@@ -47,7 +48,8 @@ BEGIN
 				END;
 				ELSE
 					SET @actor_id = (SELECT id FROM actors WHERE name = str);
-					SET movie_actor_query = CONCAT(movie_actor_query, '(',  movie_id, ',', @actor_id, '),');					
+					SET movie_actor_query = CONCAT(movie_actor_query, '(',  movie_id, ',', @actor_id, '),');
+					SET movie_actor_count = movie_actor_count + 1;
 				END IF;
 			END;
 		END IF;
@@ -78,6 +80,7 @@ BEGIN
 		
 		        -- Process each row
 		        SET movie_actor_query = CONCAT(movie_actor_query, '(',  movie_id, ',', actor_id, '),');
+		        SET movie_actor_count = movie_actor_count + 1;
 		    END LOOP read_loop;
 		
 		    -- Close the cursor
@@ -86,10 +89,14 @@ BEGIN
 	    END;
 	END IF;
 	
-	SET @sql = LEFT(movie_actor_query, CHAR_LENGTH(movie_actor_query) - 1);
-	PREPARE stmt FROM @sql;  
-	EXECUTE stmt;  
-	DEALLOCATE PREPARE stmt;
+	IF movie_actor_count > 0 THEN
+		BEGIN
+			SET @sql = LEFT(movie_actor_query, CHAR_LENGTH(movie_actor_query) - 1);
+			PREPARE stmt FROM @sql;  
+			EXECUTE stmt;  
+			DEALLOCATE PREPARE stmt;
+		END;
+	END IF;
 
 	SELECT id, name, actors FROM movies WHERE id = movie_id;
 END$$
