@@ -73,6 +73,12 @@
             {
                 // Instantiate the regular expression object.
                 Regex r = new Regex(@"\[\d+\].Name", RegexOptions.IgnoreCase);
+                string actorName = f.Value.ToString();
+                if(string.IsNullOrEmpty(actorName))
+                {
+                    // for empty actor name
+                    return false;
+                }
                 return r.Match(f.Key).Success;
             }).ToDictionary().Values;
 

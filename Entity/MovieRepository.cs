@@ -15,7 +15,7 @@ public class MovieRepository<T>(MovieDbContext context) : Repository<T>(context)
         await Task.Run(() =>
         {
           // make sure insert_movie exists
-          set.FromSqlRaw<T>("CALL insert_movie('{0}')", movie!.Name);
+          var m = set.FromSqlRaw<T>("CALL insert_movie({0}, {1})", movie!.Name, movie!.Actors!);
         });
     }
 

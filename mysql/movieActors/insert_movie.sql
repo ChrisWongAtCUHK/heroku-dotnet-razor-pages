@@ -10,11 +10,12 @@ BEGIN
 	DECLARE pos INT DEFAULT 1 ;
 	DECLARE str VARCHAR(1000);
 	DECLARE new_actor_count INT DEFAULT 0;
-	DECLARE actor_query varchar(65535);
+	DECLARE actor_insert_query varchar(65535);
 	DECLARE actor_select_query varchar(65535);
 	DECLARE movie_actor_query varchar(65535);
 	DECLARE done INT DEFAULT FALSE;
 	DECLARE actor_id INT;
+  	-- use view to be created for cursor
 	DECLARE actor_cur CURSOR FOR SELECT id FROM tmp_view;
 	DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = 1;
 	
@@ -23,7 +24,7 @@ BEGIN
  	
  	SET delimiter = ';';
 	SET remainder = actors;
-	SET actor_query = 'INSERT INTO actors (name) VALUES ';
+	SET actor_insert_query = 'INSERT INTO actors (name) VALUES ';
  	SET actor_select_query = 'CREATE OR REPLACE VIEW tmp_view as SELECT id FROM actors WHERE name IN (';
  	SET movie_actor_query = 'INSERT INTO movieActors (movieId, actorId) VALUES ';
 	
@@ -37,15 +38,16 @@ BEGIN
 		SET str = TRIM(str);
 		IF  str != '' THEN
 			BEGIN
-				SET @actor_id = (SELECT id FROM actors WHERE name = str);
-				IF @actor_id = 0 THEN
+				SET @actor_count = (SELECT COUNT(*) FROM actors WHERE name = str);
+				IF @actor_count = 0 THEN
 				BEGIN
-					SET actor_query = CONCAT(actor_query, '(\'', str, '\'),');
+					SET actor_insert_query = CONCAT(actor_insert_query, '(\'', str, '\'),');
 					SET actor_select_query = CONCAT(actor_select_query, '\'', str, '\',');
 					SET new_actor_count = new_actor_count + 1;
 				END;
 				ELSE
-					SET movie_actor_query = CONCAT(movie_actor_query, '(',  movie_id, ',', @actor_id, '),');
+					SET @actor_id = (SELECT id FROM actors WHERE name = str);
+					SET movie_actor_query = CONCAT(movie_actor_query, '(',  movie_id, ',', @actor_id, '),');					
 				END IF;
 			END;
 		END IF;
@@ -55,7 +57,7 @@ BEGIN
 	
 	IF new_actor_count > 0 THEN
 		BEGIN
-			SET @sql = LEFT(actor_query, CHAR_LENGTH(actor_query) - 1);
+			SET @sql = LEFT(actor_insert_query, CHAR_LENGTH(actor_insert_query) - 1);
 			PREPARE stmt FROM @sql;  
 			EXECUTE stmt;  
 			DEALLOCATE PREPARE stmt;
@@ -76,7 +78,6 @@ BEGIN
 		
 		        -- Process each row
 		        SET movie_actor_query = CONCAT(movie_actor_query, '(',  movie_id, ',', actor_id, '),');
-		
 		    END LOOP read_loop;
 		
 		    -- Close the cursor
@@ -89,7 +90,9 @@ BEGIN
 	PREPARE stmt FROM @sql;  
 	EXECUTE stmt;  
 	DEALLOCATE PREPARE stmt;
-	
+
+	-- this for ef core FromSqlRaw 
+	SELECT id, name FROM movies WHERE id = movie_id;
 END$$
 DELIMITER ;
 -- SHOW CREATE PROCEDURE insert_movie
