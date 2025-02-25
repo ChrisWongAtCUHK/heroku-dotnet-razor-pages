@@ -39,12 +39,19 @@
             <th>Id</th>
             <th>Name</th>
             <th>Actors</th>
+            <th></th>
         </tr>
         @foreach (Movie m in Model.movieList.Movies)
         {
             <tr>
                 <td>@m.Id</td>
                 <td>@m.Name</td>
+                <td>@m.Actors</td>
+                <td>
+                <a class="btn btn-sm btn-primary" asp-page="Update" asp-route-id="@m.Id">
+                    Update
+                </a>
+            </td>
             </tr>
         }
     </table>

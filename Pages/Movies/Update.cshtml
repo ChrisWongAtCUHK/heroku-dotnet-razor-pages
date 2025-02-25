@@ -23,8 +23,49 @@
     <input type="text" asp-for="movie!.Name" class="form-control" />
     <span asp-validation-for="movie!.Name" class="text-danger"></span>
   </div>
+  <button id="addRow" type="button" class="btn btn-info">Add</button>
+  <div id="newRow">
+    <input type="hidden" id="total" value="0" />
+  </div>
   <button type="submit" class="btn btn-primary">Update</button>
 </form>
+
+@section Scripts
+{
+  <script>
+    function addRow(actor) {
+      let rowCount = parseInt($("#total").val());
+      rowCount++;
+      $("#total").val(rowCount);
+      const $input = $(`<input type="text"></input>`);
+      $input.val(actor);
+      const $div = $('<div id="inputRow" style="padding-bottom: 5px"></div>');
+      $div.append($input);
+      $div.append('<span>&nbsp;</span>');
+      $div.append('<button id="removeRow" type="button" class="btn btn-danger">Remove</button>');
+
+      $('#newRow').append($div);
+      // $('input[name="[ +' (rowCount - 1) '+]Name"').val(actor);
+    }
+    $("#addRow").click(function () {
+      addRow("");
+    });
+    $(document).on('click', '#removeRow', function () {
+      var rowCount = parseInt($("#total").val());
+      rowCount--;
+      $("#total").val(rowCount);
+      $(this).closest('#inputRow').remove();
+    }); 
+
+    $(document).ready(function() {
+      let actors = "@Model.movie!.Actors".split(",");
+      
+      for(const actor of actors) {
+        addRow(actor);
+      }
+    }); 
+  </script>
+}
 
 @functions {
   public class UpdateModel : PageModel
