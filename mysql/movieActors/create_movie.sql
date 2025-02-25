@@ -1,8 +1,8 @@
-DROP PROCEDURE IF EXISTS insert_movie;
+DROP PROCEDURE IF EXISTS create_movie;
 
 DELIMITER $$
 $$
-CREATE PROCEDURE insert_movie(movie_name VARCHAR(100), actors VARCHAR(65535))
+CREATE PROCEDURE create_movie(movie_name VARCHAR(100), actors VARCHAR(65535))
 BEGIN
 	DECLARE movie_id INT;
 	DECLARE remainder TEXT;
@@ -94,5 +94,5 @@ BEGIN
 	SELECT id, name, actors FROM movies WHERE id = movie_id;
 END$$
 DELIMITER ;
--- SHOW CREATE PROCEDURE insert_movie
--- CALL insert_movie('Test movie', 'Actor 1; George Buza; Actor 3')
+-- SHOW CREATE PROCEDURE create_movie
+-- CALL create_movie('Test movie', 'Actor 1; George Buza; Actor 3')
