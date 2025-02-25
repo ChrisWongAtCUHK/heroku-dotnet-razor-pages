@@ -1,8 +1,8 @@
-DROP PROCEDURE IF EXISTS get_movies;
+DROP PROCEDURE IF EXISTS read_movies;
 
 DELIMITER $$
 $$
-CREATE PROCEDURE get_movies(skip INT, take INT)
+CREATE PROCEDURE read_movies(skip INT, take INT)
 BEGIN
   SELECT
     m.id,
@@ -20,5 +20,5 @@ BEGIN
     skip;
 END$$
 DELIMITER ;
--- SHOW CREATE PROCEDURE get_movies
--- CALL get_movies(0, 10)
+-- SHOW CREATE PROCEDURE read_movies
+-- CALL read_movies(0, 10)

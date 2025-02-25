@@ -1,8 +1,8 @@
-DROP PROCEDURE IF EXISTS get_movie;
+DROP PROCEDURE IF EXISTS read_movie;
 
 DELIMITER $$
 $$
-CREATE PROCEDURE get_movie(findId INT)
+CREATE PROCEDURE read_movie(findId INT)
 BEGIN
   SELECT
     m.id,
@@ -17,5 +17,5 @@ BEGIN
     m.id;
 END$$
 DELIMITER ;
--- SHOW CREATE PROCEDURE get_movie
--- CALL get_movie(1)
+-- SHOW CREATE PROCEDURE read_movie
+-- CALL read_movie(1)

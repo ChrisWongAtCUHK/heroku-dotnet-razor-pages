@@ -27,8 +27,8 @@ public class MovieRepository<T>(MovieDbContext context) : Repository<T>(context)
     T? movie = default;
     await Task.Run(() =>
     {
-      // make sure get_movie exists
-      movie = set.FromSqlRaw<T>("CALL get_movie({0})", id).ToList().FirstOrDefault();
+      // make sure read_movie exists
+      movie = set.FromSqlRaw<T>("CALL read_movie({0})", id).ToList().FirstOrDefault();
     });
     return movie;
   }
@@ -40,8 +40,8 @@ public class MovieRepository<T>(MovieDbContext context) : Repository<T>(context)
     List<T> movies = [];
     await Task.Run(() =>
     {
-      // make sure get_movies exists
-      movies = [.. set.FromSqlRaw<T>("CALL get_movies({0}, {1})", skip, take)];
+      // make sure read_movies exists
+      movies = [.. set.FromSqlRaw<T>("CALL read_movies({0}, {1})", skip, take)];
 
       total = set.FromSqlRaw<T>("""
           SELECT
