@@ -94,4 +94,10 @@ public class MovieRepository<T>(MovieDbContext context) : Repository<T>(context)
 
     return result;
   }
+
+  public override async Task UpdateAsync(T entity)
+  {
+    _context.Update(entity);
+    await _context.SaveChangesAsync();
+  }
 }

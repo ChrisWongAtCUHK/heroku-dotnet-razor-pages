@@ -27,7 +27,7 @@ public abstract class Repository<T>(DbContext context) : IRepository<T> where T 
 
         return result;
     }
-    public async Task UpdateAsync(T entity)
+    public virtual async Task UpdateAsync(T entity)
     {
         ArgumentNullException.ThrowIfNull(entity);
 
