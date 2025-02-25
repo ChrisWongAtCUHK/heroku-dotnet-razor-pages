@@ -38,7 +38,7 @@
       rowCount++;
       $("#total").val(rowCount);
       const $input = $(`<input type="text"></input>`);
-      $input.val(actor);
+      $input.val(actor.replace('&#x27;', '\''));
       const $div = $('<div id="inputRow" style="padding-bottom: 5px"></div>');
       $div.append($input);
       $div.append('<span>&nbsp;</span>');
