@@ -53,8 +53,16 @@ public abstract class Repository<T>(DbContext context) : IRepository<T> where T 
         return await _context.Set<T>().ToListAsync();
     }
 
-    public async Task<List<T>> ReadAllAsync(Expression<Func<T, bool>> filter)
+    public virtual async Task<(List<T>, int)> ReadAllAsync(string movieName, int skip, int take)
     {
-        return await _context.Set<T>().Where(filter).ToListAsync();
+        var all = _context.Set<T>();
+        // fetching only the records of the current page by the use of Linq Skip and Take methods
+        var relevant = await all.Skip(skip).Take(take).ToListAsync();
+        var total = all.Count();
+
+        // the records along with the count of all the records in a Tuple.
+        (List<T>, int) result = (relevant, total);
+
+        return result;
     }
 }

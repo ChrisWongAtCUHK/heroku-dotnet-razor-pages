@@ -1,5 +1,6 @@
-﻿@page
+﻿@page "{id:int?}"
 @model SearchModel
+@using DotNetRazorPages.Taghelpers.Paging
 @using Microsoft.AspNetCore.Mvc.RazorPages;
 @using DotNetRazorPages.Entity;
 @using System.Linq.Expressions;
@@ -9,6 +10,10 @@
 
 @{
     ViewData["Title"] = "Search Movies";
+}
+
+@section Style{
+    <link rel="stylesheet" href="~/css/pagingDiv.css" asp-append-version="true" />
 }
 
 <h1 class="bg-info text-white">Movies</h1>
@@ -35,7 +40,7 @@
             <th>Name</th>
             <th>Actors</th>
         </tr>
-        @foreach (Movie m in Model.movieList)
+        @foreach (Movie m in Model.movieList.Movies)
         {
             <tr>
                 <td>@m.Id</td>
@@ -43,6 +48,15 @@
             </tr>
         }
     </table>
+    @* add a div containing the page-model attribute and so the tag helper will convert this div to pagination links 
+    be binded to the respective property defined on the tag helper class
+    page-model ---- PageModel
+    page-name ----  PageName
+    page-classes-enabled --- PageClassesEnabled
+    page-class --- PageClass
+    page-class-selected --- PageClassSelected *@
+    <div class="pagingDiv" page-model="Model.movieList.PagingInfo" page-name="Read" page-classes-enabled="true"
+        page-class="paging" page-class-selected="active"></div>
 }
 
 @functions {
@@ -57,16 +71,37 @@
         [BindProperty]
         public Movie? movie { get; set; }
 
-        public required List<Movie> movieList { get; set; }
+        public MovieList? movieList { get; set; }
 
-        public void OnGet()
+        public IActionResult OnGet(int id)
         {
+            return Page();
         }
 
         public async Task<IActionResult> OnPostAsync()
         {
-            Expression<Func<Movie, bool>> filter = m => EF.Functions.Like(m.Name,  "%" + movie!.Name + "%");
-            movieList = await _repository.ReadAllAsync(filter);
+            const int id = 1;
+            PagingInfo pagingInfo = new PagingInfo();
+            movieList = new MovieList()
+            {
+                Movies = new List<Movie>(),
+                PagingInfo = pagingInfo
+            };
+
+            // set the page size as 10 which you can change according to your wish
+            int pageSize = 10;
+            pagingInfo.CurrentPage = id == 0 ? 1 : id;
+            pagingInfo.ItemsPerPage = pageSize;
+
+            // the value of the starting record for the page is calculated and added to the skip variable
+            var skip = pageSize * (Convert.ToInt32(id) - 1);
+            var resultTuple = await _repository.ReadAllAsync(movie!.Name, skip, pageSize);
+
+            // method returns Tuple whose value is extracted and provided to the TotalItems of pagingInfo and movie of movieList
+            pagingInfo.TotalItems = resultTuple.Item2;
+            movieList.Movies = resultTuple.Item1;
+
+            movieList.PagingInfo = pagingInfo;
             return Page();
         }
     }

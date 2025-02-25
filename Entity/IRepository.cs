@@ -11,6 +11,6 @@ public interface IRepository<T> where T : class
     Task<T?> ReadAsync(int id);
     Task DeleteAsync(int id);
     Task<List<T>> ReadAllAsync();
-    Task<List<T>> ReadAllAsync(Expression<Func<T, bool>> filter);
+    Task<(List<T>, int)> ReadAllAsync(string searchTerm, int skip, int take);
 }
 
