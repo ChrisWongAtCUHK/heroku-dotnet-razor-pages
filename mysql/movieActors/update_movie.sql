@@ -11,6 +11,7 @@ BEGIN
 	DECLARE new_actor_count INT DEFAULT 0;
 	DECLARE actor_insert_query varchar(65535);
 	DECLARE actor_select_query varchar(65535);
+	DECLARE movie_actor_count INT DEFAULT 0;
 	DECLARE movie_actor_query varchar(65535);
 	DECLARE done INT DEFAULT FALSE;
 	DECLARE actor_id INT;
@@ -41,6 +42,7 @@ BEGIN
 		IF  str != '' THEN
 			BEGIN
 				SET @actor_count = (SELECT COUNT(*) FROM actors WHERE name = str);
+				-- new actor
 				IF @actor_count = 0 THEN
 				BEGIN
 					SET actor_insert_query = CONCAT(actor_insert_query, '(\'', str, '\'),');
@@ -49,7 +51,8 @@ BEGIN
 				END;
 				ELSE
 					SET @actor_id = (SELECT id FROM actors WHERE name = str);
-					SET movie_actor_query = CONCAT(movie_actor_query, '(',  movie_id, ',', @actor_id, '),');					
+					SET movie_actor_query = CONCAT(movie_actor_query, '(',  movie_id, ',', @actor_id, '),');
+					SET movie_actor_count = movie_actor_count + 1;
 				END IF;
 			END;
 		END IF;
@@ -60,13 +63,13 @@ BEGIN
 	IF new_actor_count > 0 THEN
 		BEGIN
 			SET @sql = LEFT(actor_insert_query, CHAR_LENGTH(actor_insert_query) - 1);
-			-- PREPARE stmt FROM @sql;  
-			-- EXECUTE stmt;  
-			-- DEALLOCATE PREPARE stmt;
+			PREPARE stmt FROM @sql;  
+			EXECUTE stmt;  
+			DEALLOCATE PREPARE stmt;
 	
 			SET @sql = CONCAT(LEFT(actor_select_query, CHAR_LENGTH(actor_select_query) - 1), ')');
-			-- PREPARE stmt FROM @sql;  
-			-- EXECUTE stmt;  
+			PREPARE stmt FROM @sql;  
+			EXECUTE stmt;  
 			
 			-- Open the cursor
 		    OPEN actor_cur;
@@ -80,19 +83,23 @@ BEGIN
 		
 		        -- Process each row
 		        SET movie_actor_query = CONCAT(movie_actor_query, '(',  movie_id, ',', actor_id, '),');
+		        SET movie_actor_count = movie_actor_count + 1;
 		    END LOOP read_loop;
 		
 		    -- Close the cursor
 		    CLOSE actor_cur;
-		    -- DEALLOCATE PREPARE stmt;
+		    DEALLOCATE PREPARE stmt;
 	    END;
 	END IF;
 	
-	SET @sql = LEFT(movie_actor_query, CHAR_LENGTH(movie_actor_query) - 1);
-	-- PREPARE stmt FROM @sql;  
-	-- EXECUTE stmt;  
-	-- DEALLOCATE PREPARE stmt;
-
+	IF movie_actor_count > 0 THEN
+		BEGIN
+		SET @sql = LEFT(movie_actor_query, CHAR_LENGTH(movie_actor_query) - 1);
+		PREPARE stmt FROM @sql;  
+		EXECUTE stmt;  
+		DEALLOCATE PREPARE stmt;
+		END;
+	END IF;
 	SELECT id, name, actors FROM movies WHERE id = movie_id;
 END$$
 DELIMITER ;
