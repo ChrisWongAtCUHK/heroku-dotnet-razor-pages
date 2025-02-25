@@ -55,7 +55,7 @@
     page-classes-enabled --- PageClassesEnabled
     page-class --- PageClass
     page-class-selected --- PageClassSelected *@
-    <div class="pagingDiv" page-model="Model.movieList.PagingInfo" page-name="Read" page-classes-enabled="true"
+    <div class="pagingDiv" page-model="Model.movieList.PagingInfo" page-name="Search" page-classes-enabled="true"
         page-class="paging" page-class-selected="active"></div>
 }
 
@@ -73,14 +73,30 @@
 
         public MovieList? movieList { get; set; }
 
-        public IActionResult OnGet(int id)
+        public async Task<IActionResult> OnGetAsync(int id)
         {
+            if(id != 0)
+            {
+                var movieName = Request.Cookies["movieName"];
+                if(movieName != null && !string.IsNullOrEmpty(movieName))
+                {
+                    await SetPaging(movieName, id);
+                }                
+            }
+            
             return Page();
         }
 
         public async Task<IActionResult> OnPostAsync()
         {
             const int id = 1;
+            await SetPaging(movie!.Name, id);
+            Response.Cookies.Append("movieName", movie!.Name);
+            return Page();
+        }
+
+        private async Task SetPaging(string movieName, int id)
+        {
             PagingInfo pagingInfo = new PagingInfo();
             movieList = new MovieList()
             {
@@ -95,14 +111,13 @@
 
             // the value of the starting record for the page is calculated and added to the skip variable
             var skip = pageSize * (Convert.ToInt32(id) - 1);
-            var resultTuple = await _repository.ReadAllAsync(movie!.Name, skip, pageSize);
+            var resultTuple = await _repository.ReadAllAsync(movieName, skip, pageSize);
 
             // method returns Tuple whose value is extracted and provided to the TotalItems of pagingInfo and movie of movieList
             pagingInfo.TotalItems = resultTuple.Item2;
             movieList.Movies = resultTuple.Item1;
 
             movieList.PagingInfo = pagingInfo;
-            return Page();
         }
     }
 }
