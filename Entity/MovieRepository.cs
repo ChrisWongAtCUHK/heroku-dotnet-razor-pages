@@ -97,7 +97,14 @@ public class MovieRepository<T>(MovieDbContext context) : Repository<T>(context)
 
   public override async Task UpdateAsync(T entity)
   {
-    _context.Update(entity);
-    await _context.SaveChangesAsync();
+    var set = context.Set<T>();
+
+    Movie? movie = entity as Movie;
+    await Task.Run(() =>
+    {
+      // make sure update_movie exists
+      var result = set.FromSqlRaw<T>("CALL update_movie({0}, {1}, {2})", movie!.Id, movie!.Name, movie!.Actors!);
+      var m = result.ToList().FirstOrDefault();
+    });
   }
 }

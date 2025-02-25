@@ -3,6 +3,7 @@
 @using Microsoft.AspNetCore.Mvc.RazorPages;
 @using DotNetRazorPages.Entity;
 @using Models;
+@using System.Text.RegularExpressions
 
 @{
   ViewData["Title"] = "Update a Movie";
@@ -37,7 +38,7 @@
       let rowCount = parseInt($("#total").val());
       rowCount++;
       $("#total").val(rowCount);
-      const $input = $(`<input type="text"></input>`);
+      const $input = $(`<input type="text" name="[${rowCount - 1}].Name"></input>`);
       $input.val(actor.replace('&#x27;', '\''));
       const $div = $('<div id="inputRow" style="padding-bottom: 5px"></div>');
       $div.append($input);
@@ -55,12 +56,12 @@
       rowCount--;
       $("#total").val(rowCount);
       $(this).closest('#inputRow').remove();
-    }); 
+    });
 
-    $(document).ready(function() {
+    $(document).ready(function () {
       let actors = "@Model.movie!.Actors".split(",");
-      
-      for(const actor of actors) {
+
+      for (const actor of actors) {
         addRow(actor);
       }
     }); 
@@ -89,6 +90,20 @@
     {
       if (ModelState.IsValid)
       {
+        var values = Request.Form.Where(f =>
+        {
+          // Instantiate the regular expression object.
+          Regex r = new Regex(@"\[\d+\].Name", RegexOptions.IgnoreCase);
+          string actorName = f.Value.ToString().Trim();
+          if (string.IsNullOrEmpty(actorName))
+          {
+            // for empty actor name
+            return false;
+          }
+          return r.Match(f.Key).Success;
+        }).ToDictionary().Values;
+
+        movie!.Actors = string.Join(";", values);
         await _repository.UpdateAsync(movie ?? new Movie()
         {
           Name = ""
