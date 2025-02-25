@@ -10,7 +10,5 @@ public class Movie
 
     [Required]
     public required string Name { get; set; }
-
-    [NotMapped]
     public string? Actors { get; set; }
 }

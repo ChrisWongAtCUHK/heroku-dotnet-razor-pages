@@ -91,8 +91,7 @@ BEGIN
 	EXECUTE stmt;  
 	DEALLOCATE PREPARE stmt;
 
-	-- this for ef core FromSqlRaw 
-	SELECT id, name FROM movies WHERE id = movie_id;
+	SELECT id, name, actors FROM movies WHERE id = movie_id;
 END$$
 DELIMITER ;
 -- SHOW CREATE PROCEDURE insert_movie
