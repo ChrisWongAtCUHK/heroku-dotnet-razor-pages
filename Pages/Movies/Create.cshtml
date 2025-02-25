@@ -14,9 +14,9 @@
 <div asp-validation-summary="All" class="text-danger"></div>
 <form method="post">
     <div class="form-group">
-        <label asp-for="@Model.movie!.Name"></label>
-        <input type="text" asp-for="@Model.movie!.Name" class="form-control" />
-        <span asp-validation-for="@Model.movie!.Name" class="text-danger"></span>
+        <label asp-for="@Model.Movie!.Name"></label>
+        <input type="text" asp-for="@Model.Movie!.Name" class="form-control" />
+        <span asp-validation-for="@Model.Movie!.Name" class="text-danger"></span>
     </div>
     <button id="addRow" type="button" class="btn btn-info">Add</button>
     <div id="newRow">
@@ -29,24 +29,23 @@
 {
     <script>
         $("#addRow").click(function () {
-            var rowCount = parseInt($("#total").val());
-            rowCount++;
-            $("#total").val(rowCount);
-            var html = '';
-            html += '<div id="inputRow">';
-            html += '<input type="text" name="[' + (rowCount - 1) + '].Name"  />';
-            //add more inputs here...  
-            html += '<button id="removeRow" type="button" class="btn btn-danger">Remove</button>';
-            html += '</div>';
-
-            $('#newRow').append(html);
+            addRow("");
         });
         $(document).on('click', '#removeRow', function () {
             var rowCount = parseInt($("#total").val());
             rowCount--;
             $("#total").val(rowCount);
             $(this).closest('#inputRow').remove();
-        });  
+        });
+
+        $(document).ready(function () {
+            let actors = '@TempData["actors"]';
+            actors = actors.split(",");
+
+            for (const actor of actors) {
+                addRow(actor);
+            }
+        }); 
     </script>
 }
 
@@ -55,7 +54,7 @@
     {
         private readonly IRepository<Movie> _repository;
         [BindProperty]
-        public Movie? movie { get; set; }
+        public Movie? Movie { get; set; }
         public CreateModel(IRepository<Movie> repository)
         {
             _repository = repository;
@@ -69,30 +68,46 @@
 
         public async Task<IActionResult> OnPostAsync()
         {
-            var values = Request.Form.Where(f => 
-            {
-                // Instantiate the regular expression object.
-                Regex r = new Regex(@"\[\d+\].Name", RegexOptions.IgnoreCase);
-                string actorName = f.Value.ToString().Trim();
-                if(string.IsNullOrEmpty(actorName))
-                {
-                    // for empty actor name
-                    return false;
-                }
-                return r.Match(f.Key).Success;
-            }).ToDictionary().Values;
-
-            movie!.Actors = string.Join(";", values);
             if (ModelState.IsValid)
             {
-                await _repository.CreateAsync(movie ?? new Movie()
+                var values = Request.Form.Where(f =>
+                {
+                    // Instantiate the regular expression object.
+                    Regex r = new Regex(@"\[\d+\].Name", RegexOptions.IgnoreCase);
+                    string actorName = f.Value.ToString().Trim();
+                    if (string.IsNullOrEmpty(actorName))
+                    {
+                        // for empty actor name
+                        return false;
+                    }
+                    return r.Match(f.Key).Success;
+                }).ToDictionary().Values;
+
+                Movie!.Actors = string.Join(";", values);
+                await _repository.CreateAsync(Movie ?? new Movie()
                 {
                     Name = "Test"
                 });
                 return RedirectToPage("Read", new { id = 1 });
             }
             else
+            {
+                var values = Request.Form.Where(f =>
+                {
+                    // Instantiate the regular expression object.
+                    Regex r = new Regex(@"\[\d+\].Name", RegexOptions.IgnoreCase);
+                    string actorName = f.Value.ToString().Trim();
+                    if (string.IsNullOrEmpty(actorName))
+                    {
+                        // for empty actor name
+                        return false;
+                    }
+                    return r.Match(f.Key).Success;
+                }).ToDictionary().Values;
+
+                TempData["actors"] = string.Join(",", values);
                 return Page();
+            }
         }
     }
 }

@@ -45,3 +45,18 @@ document.addEventListener("DOMContentLoaded", function () {
   // end if innerWidth
 });
 // DOMContentLoaded  end
+// add row of actor
+function addRow(actor) {
+  let rowCount = parseInt($("#total").val());
+  rowCount++;
+  $("#total").val(rowCount);
+  const $input = $(`<input type="text" name="[${rowCount - 1}].Name"></input>`);
+  $input.val(actor.replace('&#x27;', '\''));
+  const $div = $('<div id="inputRow" style="padding-bottom: 5px"></div>');
+  $div.append($input);
+  $div.append('<span>&nbsp;</span>');
+  $div.append('<button id="removeRow" type="button" class="btn btn-danger">Remove</button>');
+
+  $('#newRow').append($div);
+  // $('input[name="[ +' (rowCount - 1) '+]Name"').val(actor);
+}
