@@ -38,7 +38,7 @@ public abstract class Repository<T>(DbContext context) : IRepository<T> where T 
     {
         return await _context.Set<T>().FindAsync(id);
     }
-    public async Task DeleteAsync(int id)
+    public virtual async Task DeleteAsync(int id)
     {
         var entity = await _context.Set<T>().FindAsync(id);
         if (entity == null)

@@ -107,4 +107,14 @@ public class MovieRepository<T>(MovieDbContext context) : Repository<T>(context)
       var m = result.ToList().FirstOrDefault();
     });
   }
+  public override async Task DeleteAsync(int id)
+  {
+    var set = context.Set<T>();
+    await Task.Run(() =>
+    {
+      // make sure delete_movie exists
+      var result = set.FromSqlRaw("CALL delete_movie({0})", id);
+      var m = result.ToList();
+    });
+  }
 }
