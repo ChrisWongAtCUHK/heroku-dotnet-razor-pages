@@ -53,7 +53,10 @@ public class PageLinkTagHelper : TagHelper
             anchorInnerHtml = AnchorInnerHtml(i, PageModel);
 
             if (anchorInnerHtml == "..")
+            {
                 tag.Attributes["href"] = "#";
+                tag.AddCssClass("dotdot");
+            }
             else if (PageOtherValues.Keys.Count != 0)
                 tag.Attributes["href"] = urlHelper.Page(PageName, AddDictionaryToQueryString(i));
             else
